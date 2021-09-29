@@ -46,10 +46,16 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
         setBackgroundimg(event.target.value);
     }
 
+    // const [selectedFile, setSelectedFile] = React.useState();
+    // const handleBackgroundimg: React.ChangeEventHandler<HTMLInputElement> = (event) =>  {
+	// 	setSelectedFile(event.target.files[0]);
+	// 	setIsSelected(true);
+	// };
 
 
 
     const isNameValid = name.length >= 5
+    
 
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: any) => {
@@ -95,13 +101,13 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
                 value={role} />
 
             <label>Add profile</label>
-            <input multiple accept=".jpg,.png,.webp,.jfif" name="image" type="file"alt="profile"
+            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file"alt="profile"
                 onChange={handleProfileChange}
                 value={profileimg} />
 
 
             <label>Add background cover</label>
-            <input multiple accept=".jpg,.png,.webp,.jfif" name="image" type="file" alt="bg"
+            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="bg"
                 onChange={handleBackgroundimg}
                 value={backgroundimg} />
 
@@ -121,3 +127,7 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
 
 
 export default ProducerForm;
+
+function setIsSelected(arg0: boolean) {
+    throw new Error('Function not implemented.');
+}
