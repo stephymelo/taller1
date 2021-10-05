@@ -34,11 +34,6 @@ const Links: React.FC<Links> = ({ }) => {
             </nav>
         </div>
        
-
-
-
-
-
 );
 }
 
