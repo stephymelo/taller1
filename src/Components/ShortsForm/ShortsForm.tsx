@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DatePicker from 'react-date-picker'
+// import DatePicker from 'react-date-picker'
 import { ShortsElemProps } from '../Shorts/ShortsElem';
 import './ShortsForm.css';
 
@@ -21,7 +21,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ onCreate }) => {
     }
 
     const [genre, setGenre] = React.useState('');
-    const handleGenreChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const handleGenreChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
         setGenre(event.target.value);
     }
 
@@ -91,12 +91,12 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ onCreate }) => {
             <label>Genre</label>
            
 
-        {/* <select value={genre} onChange={handleGenreChange}>
+        <select value={genre} onChange={handleGenreChange}>
             <option value="comedy">Comedy</option>
             <option value="drama">Drama</option>
             <option value="suspense">Suspense</option>
             <option value="romance">Romance</option>
-          </select> */}
+          </select>
 
           
 

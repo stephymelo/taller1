@@ -37,6 +37,7 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
 
        
         /////////////////////
+        console.log(event);
         setProfileimg(event.target.value);
   
     }

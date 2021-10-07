@@ -25,6 +25,7 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ title,year,genre,coverimg,ratin
   <div>
   <h2>{title}</h2>
   <h3>{year}</h3>
+  <p>{genre}</p>
   <p>{description}</p>
 
   </div>

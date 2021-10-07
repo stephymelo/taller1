@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
+import ShortsForm from '../ShortsForm/ShortsForm';
+import ShortsElem, { ShortsElemProps } from '../Shorts/ShortsElem';
 import ProducerForm from '../ProducerForm/ProducerForm';
 import ProducerElem, { ProducerElemProps } from '../Producer/ProducerElem';
 import './App.css';
@@ -15,6 +17,10 @@ type ProducerElemObj = ProducerElemProps & {
   id: number;
 }
 
+type ShortElemObj = ShortsElemProps & {
+  id: number;
+}
+
 function App() {
 
 
@@ -24,7 +30,37 @@ function App() {
 
 
   function Shortfilms() {
-    return <h2>short films</h2>;
+
+    const [shortElems, setShortElems] = React.useState<ShortElemObj[]>([]);
+
+    const handleCreate = (newShortElem: ShortsElemProps) => {
+
+
+
+      const newArray = [
+        ...shortElems,
+        {
+          id: Math.random(),
+          title: newShortElem.title,
+          genre:newShortElem.genre,
+          year: newShortElem.year,
+          rating:newShortElem.rating,
+          coverimg:newShortElem.coverimg,
+          description: newShortElem.description
+        }
+      ];
+      setShortElems(newArray);
+    }
+
+
+
+    return <><h2>short films</h2><div><ShortsForm onCreate={handleCreate} />
+      {shortElems.map((elem) => {
+        return <ShortsElem key={elem.id} title={elem.title} genre={elem.genre} year={elem.year} rating={elem.rating} description={elem.description} coverimg={elem.coverimg} />;
+      })}
+      </div></>
+    
+    ;
   }
 
 

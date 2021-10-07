@@ -13,7 +13,7 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ name,role, profileimg, back
 
 
 
-  console.log(process.env.PUBLIC_URL+"/img/C:/fakepath/"+profileimg);
+  // console.log(process.env.PUBLIC_URL+"/img/C:/fakepath/"+profileimg);
   const style: React.CSSProperties = { 
     backgroundImage: backgroundimg,
   }
@@ -23,6 +23,7 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ name,role, profileimg, back
     <section className="profileBanner" ></section>
     <div style={style}>
       <img src={`${process.env.PUBLIC_URL}${profileimg}`}  alt="profile"/>
+     
     </div>
     <div>
     <h2>{name}</h2>
