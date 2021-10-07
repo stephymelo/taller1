@@ -15,6 +15,11 @@ import {
 
 type ProducerElemObj = ProducerElemProps & {
   id: number;
+  name: string;
+  role: string;
+  profileimg: string;
+  backgroundimg: string;
+
 }
 
 type ShortElemObj = ShortsElemProps & {
@@ -68,9 +73,13 @@ function App() {
 
 
   function ProducerUser() {
-    const [producerElems, setProducerElems] = React.useState<ProducerElemObj[]>([]);
 
-    const handleCreate = (newProducerElem: ProducerElemProps) => {
+
+    const [producerElems, setProducerElems] = React.useState<ProducerElemObj[]>([
+     
+    ]);
+
+    const handleCreate = (newProducerElem: {name: string, role: string, profileimg: string, backgroundimg: string}) => {
 
 
 
@@ -86,15 +95,29 @@ function App() {
       ];
       setProducerElems(newArray);
     }
+///////////
+    const handleDelete = (deleteId: number) => {
+      const musicElemsCopy = producerElems.filter((elem) => {
+        if(elem.id === deleteId) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      setProducerElems(musicElemsCopy);
+    }
+/////////////
     return <><h2>ProducerUser</h2><div>
       <ProducerForm onCreate={handleCreate} />
       {producerElems.map((elem) => {
-        return <ProducerElem key={elem.id} name={elem.name} role={elem.role} profileimg={elem.profileimg} backgroundimg={elem.backgroundimg} />;
+        return <ProducerElem 
+        key={elem.id} id={elem.id} name={elem.name} role={elem.role} profileimg={elem.profileimg} backgroundimg={elem.backgroundimg} onDelete={handleDelete} />;
       })}
     </div></>
 
       ;
   }
+  
 
 
 

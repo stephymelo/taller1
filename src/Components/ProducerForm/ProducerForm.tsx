@@ -3,7 +3,10 @@ import { ProducerElemProps } from '../Producer/ProducerElem';
 import './ProducerForm.css';
 
 interface ProfucerElemFormProps {
-    onCreate: (newProducer: ProducerElemProps) => void;
+    onCreate: (newProducer: {name: string,
+        role: string,
+        profileimg: string,
+        backgroundimg: string}) => void;
 
 }
 
@@ -71,6 +74,7 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
                 role: role,
                 profileimg: profileimg,
                 backgroundimg: backgroundimg
+                
 
             });
         } else {

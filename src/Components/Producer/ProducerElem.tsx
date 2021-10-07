@@ -2,14 +2,16 @@ import * as React from 'react';
 import './ProducerElem.css';
 
 export interface ProducerElemProps {
+  id: number;
   name: string;
   role: string;
   profileimg: string;
   backgroundimg: string;
+  onDelete: (id: number) => void;
 
 }
 
-const ProducerElem: React.FC<ProducerElemProps> = ({ name,role, profileimg, backgroundimg}) => {
+const ProducerElem: React.FC<ProducerElemProps> = ({ id, name,role, profileimg, backgroundimg, onDelete}) => {
 
 
 
@@ -18,6 +20,9 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ name,role, profileimg, back
     backgroundImage: backgroundimg,
   }
 
+  const handleDelete: React.MouseEventHandler<HTMLButtonElement> = () => {
+    onDelete(id);
+  }
 
   return (<article className="ProducerPage">
     <section className="profileBanner" ></section>
@@ -28,6 +33,7 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ name,role, profileimg, back
     <div>
     <h2>{name}</h2>
     <h3>{role}</h3>
+    <button onClick={handleDelete}>delete</button>
 
     </div>
     
