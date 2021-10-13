@@ -19,17 +19,21 @@ const Links: React.FC<Links> = ({ }) => {
                         <Link className="elem" to="/">Home</Link>
                     </li>
                     <li>
+                        <Link className="elem" to="/createShortfilms">Add Short film</Link>
+                    </li>
+                    <li>
                         <Link className="elem" to="/shortfilms">Short films</Link>
                     </li>
                     <li>
-                        <Link className="elem" to="/producerUser">ProducerUser</Link>
+                        <Link className="elem" to="/producer">My page</Link>
+                    </li>
+                    <li>
+                        <Link className="elem" to="/createProducer">Sign up</Link>
                     </li>
                     <li>
                         <Link className="elem" to="/festivals">Festivals </Link>
                     </li>
-                    <li>
-                        <Link className="elem" to="/login">Log in</Link>
-                    </li>
+                    
                 </ul>
             </nav>
         </div>

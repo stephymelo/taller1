@@ -1,0 +1,44 @@
+.shortfilm{
+    margin-top:40px;
+    margin-left:50px;
+    display: flex;
+    
+}
+
+.button{
+    font-family: "Noir Pro", sans-serif;
+    font-size:14px;
+    color:white;
+    border-radius: 20px;
+    border-style: none;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    background-color: #87A1FF;
+    margin-left:10px;
+}
+
+.coverimg{
+    width:600px;
+
+}
+
+.btnDiv{
+    right:0;
+    top:10;
+    position: absolute;
+}
+.imgDiv{
+}
+
+.infoDiv{
+    position: relative;
+    padding-bottom:10px;
+    padding-top:10px;
+    padding-right:100px;
+    padding-left:20px;
+    box-shadow: -5px 5px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    margin-left:50px;
+
+}

@@ -7,8 +7,8 @@ import ProducerElem, { ProducerElemProps } from '../Producer/ProducerElem';
 import './App.css';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
+  HashRouter,
 } from "react-router-dom";
 
 
@@ -22,127 +22,175 @@ type ProducerElemObj = ProducerElemProps & {
 
 }
 
-type ShortElemObj = ShortsElemProps & {
+type ShortElemObj = {
   id: number;
+  coverimg: string;
+  genre: string;
+  year: number;
+  description: string;
+  title: string;
 }
 
 function App() {
 
+  const [formType, setFormType] = React.useState<'create' | 'edit'>('create');
+  const [editId, setEditId] = React.useState<number | null>(null);
+  const [shortElems, setShortElems] = React.useState<ShortElemObj[]>([
+    {
+      id: 0,
+      coverimg: 'adasdas',
+      genre: '',
+      year: 2020,
+      description: 'eeferf',
+      title: 'Nuevo elemento'
+    },
+  ]);
 
-  function Festival() {
-    return <h2>Festivals</h2>;
+  const handleCreate = (newShortElem: { title: string, genre: string, year: number, coverimg: string, description: string }) => {
+
+
+
+    const newArray = [
+      ...shortElems,
+      {
+        id: Math.random(),
+        title: newShortElem.title,
+        genre: newShortElem.genre,
+        year: newShortElem.year,
+        coverimg: newShortElem.coverimg,
+        description: newShortElem.description
+      }
+    ];
+    setShortElems(newArray);
+  }
+
+  const handleDelete = (deleteId: number) => {
+
+    const shortElemsCopy = shortElems.filter((elem) => {
+      if (elem.id === deleteId) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    setShortElems(shortElemsCopy);
   }
 
 
-  function Shortfilms() {
+  const handleEdit = (editId: number, editMusicElem: { title: string }) => {
+    console.log(editId, editMusicElem);
 
-    const [shortElems, setShortElems] = React.useState<ShortElemObj[]>([]);
-
-    const handleCreate = (newShortElem: ShortsElemProps) => {
-
-
-
-      const newArray = [
-        ...shortElems,
-        {
-          id: Math.random(),
-          title: newShortElem.title,
-          genre:newShortElem.genre,
-          year: newShortElem.year,
-          rating:newShortElem.rating,
-          coverimg:newShortElem.coverimg,
-          description: newShortElem.description
-        }
-      ];
-      setShortElems(newArray);
+    const shortElemsCopy = shortElems.slice();
+    const editIndex = shortElems.findIndex((elem) => {
+      if (elem.id === editId) {
+        return true;
+      }
+      return false;
+    });
+    shortElemsCopy[editIndex] = {
+      ...shortElems[editIndex],
+      ...editMusicElem,
     }
 
+    setShortElems(shortElemsCopy);
+  }
 
-
-    return <><h2>short films</h2><div><ShortsForm onCreate={handleCreate} />
-      {shortElems.map((elem) => {
-        return <ShortsElem key={elem.id} title={elem.title} genre={elem.genre} year={elem.year} rating={elem.rating} description={elem.description} coverimg={elem.coverimg} />;
-      })}
-      </div></>
+  const handleBeginEdit = (editId: number) => {
+    setEditId(editId);
+    setFormType('edit');
+  }
     
-    ;
-  }
 
 
 
+/////// PRODUCER USER
+
+    //   const [producerElems, setProducerElems] = React.useState<ProducerElemObj[]>([
+    //     id:0,
+
+        
+
+    //   ]);
+
+      
+    //   const handleCreateP = (newProducerElem: {name: string, role: string, profileimg: string, backgroundimg: string}) => {
 
 
-  function ProducerUser() {
+
+    //     const newArrayP = [
+    //       ...producerElems,
+    //       {
+    //         id: Math.random(),
+    //         role: newProducerElem.role,
+    //         name: newProducerElem.name,
+    //         profileimg: newProducerElem.profileimg,
+    //         backgroundimg: newProducerElem.backgroundimg
+    //       }
+    //     ];
+    //     setProducerElems(newArrayP);
+    //   }
+    //   const handleDeleteP = (deleteId: number) => {
+    //     const musicElemsCopy = producerElems.filter((elem) => {
+    //       if(elem.id === deleteId) {
+    //         return false;
+    //       } else {
+    //         return true;
+    //       }
+    //     });
+    //     setProducerElems(musicElemsCopy);
+    //   }
+    // }
 
 
-    const [producerElems, setProducerElems] = React.useState<ProducerElemObj[]>([
-     
-    ]);
-
-    const handleCreate = (newProducerElem: {name: string, role: string, profileimg: string, backgroundimg: string}) => {
-
-
-
-      const newArray = [
-        ...producerElems,
-        {
-          id: Math.random(),
-          role: newProducerElem.role,
-          name: newProducerElem.name,
-          profileimg: newProducerElem.profileimg,
-          backgroundimg: newProducerElem.backgroundimg
-        }
-      ];
-      setProducerElems(newArray);
-    }
-///////////
-    const handleDelete = (deleteId: number) => {
-      const musicElemsCopy = producerElems.filter((elem) => {
-        if(elem.id === deleteId) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-      setProducerElems(musicElemsCopy);
-    }
-/////////////
-    return <><h2>ProducerUser</h2><div>
-      <ProducerForm onCreate={handleCreate} />
-      {producerElems.map((elem) => {
-        return <ProducerElem 
-        key={elem.id} id={elem.id} name={elem.name} role={elem.role} profileimg={elem.profileimg} backgroundimg={elem.backgroundimg} onDelete={handleDelete} />;
-      })}
-    </div></>
-
-      ;
-  }
-  
 
 
 
 
   return (
     <div>
-      <Router>
+      <HashRouter>
         <Header />
+        <Route path="/createShortfilms">
+          <h2>short films</h2><div><ShortsForm editId={editId}
+            type={formType}
+            onCreate={handleCreate}
+            onEdit={handleEdit} />
+          </div>
 
-        <Switch>
-          <Route path="/shortfilms">
-            <Shortfilms />
-          </Route>
-          <Route path="/producerUser">
-            <ProducerUser />
-          </Route>
-          <Route path="/festivals">
-            <Festival />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+        </Route>
+
+        <Route path="/shortfilms">
+          {shortElems.map((elem) => {
+            return <ShortsElem key={elem.id} title={elem.title} genre={elem.genre} year={elem.year} description={elem.description} coverimg={elem.coverimg} onDelete={handleDelete}
+              onEdit={handleBeginEdit} id={elem.id} />;
+          })}
+        </Route>
+        <Route path="/producer">
+        {/* {producerElems.map((elem) => {
+          return <ProducerElem 
+          key={elem.id} id={elem.id} name={elem.name} role={elem.role} profileimg={elem.profileimg} backgroundimg={elem.backgroundimg} onDelete={handleDelete}onEdit={handleBeginEdit} />;
+        })} */}
+
+        </Route>
+
+        <Route path="/createProducer">
+          {/* <h2>ProducerUser</h2><div>
+        <ProducerForm editId={editId}
+            type={formType}
+            onCreate={handleCreate}
+            onEdit={handleEdit} />
+        </div> */}
+
+        </Route>
+        <Route path="/festivals">
+
+        </Route>
+
+      </HashRouter>
+    </div >
 
 
-  )
+  );
 }
 
 

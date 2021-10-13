@@ -1,14 +1,20 @@
 import * as React from 'react';
 // import DatePicker from 'react-date-picker'
 import { ShortsElemProps } from '../Shorts/ShortsElem';
+import { useHistory } from 'react-router';
+
 import './ShortsForm.css';
 
 interface ShortElemFormProps {
-    onCreate: (newShort: ShortsElemProps) => void;
+    editId: number|null;
+    type: 'create' | 'edit';
+    onCreate: (newShort: { title: string, genre: string, year: number, description: string, coverimg: string }) => void;
+    onEdit: (id: number, editMusicElem: { title: string }) => void;
 
 }
 
-const ShortsForm: React.FC<ShortElemFormProps> = ({ onCreate }) => {
+const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEdit }) => {
+    const history = useHistory();
 
 
     const [formSubmitted, setFormSubmitted] = React.useState(false);
@@ -25,10 +31,15 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ onCreate }) => {
         setGenre(event.target.value);
     }
 
+    const [ coverimg, setCoverimg ] = React.useState('');
+    const handleCoverimg: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+      setCoverimg(event.target.value);
+    }
 
-    const [year, setYear] = React.useState('');
+
+    const [year, setYear] = React.useState(0);
     const handleYearChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-        setYear(event.target.value);
+        setYear(Number.parseInt(event.target.value));
     }
 
     const [description, setDescription] = React.useState('');
@@ -41,14 +52,13 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ onCreate }) => {
 
 
 
-    const isNameValid = true;
-
+    const isTitleValid = title.length >= 5 && title.length <= 10;;
 
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: any) => {
         event.preventDefault();
         setFormSubmitted(true);
-        if (isNameValid) {
+        if (isTitleValid && type === 'create'){
             console.log('valid');
 
 
@@ -56,75 +66,73 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ onCreate }) => {
                 title: title,
                 genre: genre,
                 year: year,
-                rating: "0",
                 coverimg: "string",
                 description: description
 
             });
+            history.push('/shortfilms');
+
+        }else if (type === 'edit' && isTitleValid) {
+            onEdit(editId!, { title: title });
         } else {
-            console.log('invalid');
+                console.log('invalid');
+            }
         }
+
+
+
+
+
+
+        return (
+
+            <form className="shortsForm" onSubmit={handleSubmit}>
+
+
+
+
+                <h2>{type === 'create' ? 'New' : 'Edit'} Shortfilm {editId}</h2>
+
+                {type === 'create' &&<label>Title
+                    <input type="text"
+                        onChange={handleTitleChange}
+                        value={title} />
+                    </label>
+                }
+
+                <label>Year</label>
+                {/* <DatePicker onChange={handleYearChange} value={year}/> */}
+                <input type="text"
+                    onChange={handleYearChange}
+                    value={year} />
+
+                <label>Genre</label>
+
+                <select value={genre} onChange={handleGenreChange}>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="suspense">Suspense</option>
+                    <option value="romance">Romance</option>
+                </select>
+
+                <label>Description</label>
+                <input type="text"
+                    onChange={handleDescriptionChange}
+                    value={description} />
+
+                <button>
+                    {type === 'create' ? 'Create new Shortfilm' : 'Save changes'}
+                </button>
+
+
+
+
+
+            </form>);
     }
 
 
 
-
-
-
-    return (
-
-        <form className="shortsForm" onSubmit={handleSubmit}>
-            <h2>Create profile</h2>
-            <label>Title</label>
-            <input type="text"
-                onChange={handleTitleChange}
-                value={title} />
-
-
-
-            <label>Year</label>
-            {/* <DatePicker onChange={handleYearChange} value={year}/> */}
-            <input type="text"
-                onChange={handleYearChange}
-                value={year} />
-
-            <label>Genre</label>
-           
-
-        <select value={genre} onChange={handleGenreChange}>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="suspense">Suspense</option>
-            <option value="romance">Romance</option>
-          </select>
-
-          
-
-
-
-
-            <label>Description</label>
-            <input type="text"
-                onChange={handleDescriptionChange}
-                value={description} />
-
-
-
-
-
-            <button>
-                Add
-            </button>
-
-
-
-
-
-        </form>);
-}
-
-
-
-export default ShortsForm;
+    export default ShortsForm;
 
 
