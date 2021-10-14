@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import DatePicker from 'react-date-picker'
+import DatePicker from 'react-date-picker';
 import { ShortsElemProps } from '../Shorts/ShortsElem';
 import { useHistory } from 'react-router';
 
@@ -15,6 +15,7 @@ interface ShortElemFormProps {
 
 const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEdit }) => {
     const history = useHistory();
+
 
 
     const [formSubmitted, setFormSubmitted] = React.useState(false);
@@ -43,7 +44,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
     }
 
     const [description, setDescription] = React.useState('');
-    const handleDescriptionChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const handleDescriptionChange: React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
         setDescription(event.target.value);
     }
 
@@ -52,7 +53,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
 
 
 
-    const isTitleValid = title.length >= 5 && title.length <= 10;;
+    const isTitleValid = title.length >= 5 && title.length <= 10;
 
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: any) => {
@@ -81,6 +82,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
 
 
 
+        const date = new Date();
 
 
 
@@ -101,8 +103,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
                 }
 
                 <label>Year</label>
-                {/* <DatePicker onChange={handleYearChange} value={year}/> */}
-                <input type="text"
+                <input type="number" min={1900} max={date.getFullYear()} 
                     onChange={handleYearChange}
                     value={year} />
 
@@ -116,7 +117,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
                 </select>
 
                 <label>Description</label>
-                <input type="text"
+                <textarea className="descripInput" rows={4} cols={50}
                     onChange={handleDescriptionChange}
                     value={description} />
 

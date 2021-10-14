@@ -1,14 +1,10 @@
 import * as React from 'react';
 import './ShortsElem.css';
 import cover from '../Images/img.png';
+import { ShortElemObj } from '../App/App';
+import { GetReviewNum } from '../../Utils/GetReviewNum';
 
-export interface ShortsElemProps {
-  id: number;
-  title: string;
-  genre: string;
-  year: number;
-  coverimg: string;
-  description: string;
+export type ShortsElemProps = ShortElemObj & {
   onDelete: (id: number) => void;
   onEdit: (id: number) => void;
 
@@ -16,7 +12,7 @@ export interface ShortsElemProps {
 }
 
 
-const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, coverimg, description, onDelete, onEdit }) => {
+const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,coverimg, description, onDelete, onEdit }) => {
 
 
 
@@ -40,6 +36,8 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, coverim
         <h3>{year}</h3>
         <p>{genre}</p>
         <p>{description}</p>
+        {review.length>0 ? <p>Review: {GetReviewNum(review)} </p>: null}
+      
         <div className="btnDiv">
           <button className="button" onClick={handleDelete}>delete</button>
           <button className="button" onClick={handleEdit}>edit</button>
