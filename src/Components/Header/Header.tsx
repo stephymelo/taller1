@@ -13,9 +13,7 @@ const Header: React.FC<HeaderProps> = ({ }) => {
         <div className="logoContainer">
         <img className="logo" src={logo} alt="logo" />
         </div>
-        <nav>
-         <Links/>
-        </nav>
+        <div> <Links/></div> 
        
     </header>;
 }

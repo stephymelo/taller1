@@ -7,21 +7,35 @@ body{
 
 }
 
+h3{
+  font-size:14px;
+}
+
+h4{
+  font-weight: 300;
+}
+
+h5{
+  font-size:14px;
+  font-weight: 300;
+}
+
+p{
+  font-size:12px;
+  font-weight: 100;
+}
+
 
 .logo{
+  margin-left:30px;
   height:50px;
   width:100px;
 }
 
 .menu{
-  margin-top:20px;
-  margin-left:60px; 
-  width: 50%;
-  font-size: 16px;
-  display: flex;
-  
- 
-  
+  margin-top:10px;
+  margin-right:50px;
+  font-size: 16px; 
 }
 
 .menulist{
@@ -31,11 +45,33 @@ body{
   
 
 }
+.headerApp{
+  width:100%;
+  margin-top:30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 
 
-.elem{
-  color: gray;
-  font-weight: 100;
-  text-decoration: none;
-  padding-left:25px;
+
+button{
+  font-family: "Noir Pro", sans-serif;
+  font-size:14px;
+  color:white;
+  border-radius: 20px;
+  border-style: none;
+  padding:5px;
+  padding-left:10px;
+  padding-right:10px;
+  background-color: #87A1FF;
+  margin-left:10px;
+  transition-duration: 0.4s;
+}
+
+button:hover{
+  background-color: gray; 
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+    
 }

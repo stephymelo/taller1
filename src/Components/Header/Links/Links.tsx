@@ -1,4 +1,5 @@
 import React from "react";
+import './Links.css'
 import {
     Link,
   } from "react-router-dom";
@@ -12,7 +13,7 @@ import {
 const Links: React.FC<Links> = ({ }) => {
 
     return( 
-        <div>
+       
             <nav className="menu">
                 <ul className="menulist">
                     <li className="menulistElem">
@@ -36,7 +37,7 @@ const Links: React.FC<Links> = ({ }) => {
                     
                 </ul>
             </nav>
-        </div>
+    
        
 );
 }

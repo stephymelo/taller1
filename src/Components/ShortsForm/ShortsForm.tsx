@@ -1,12 +1,11 @@
 import * as React from 'react';
-import DatePicker from 'react-date-picker';
 import { ShortsElemProps } from '../Shorts/ShortsElem';
 import { useHistory } from 'react-router';
 
 import './ShortsForm.css';
 
 interface ShortElemFormProps {
-    editId: number|null;
+    editId: number | null;
     type: 'create' | 'edit';
     onCreate: (newShort: { title: string, genre: string, year: number, description: string, coverimg: string }) => void;
     onEdit: (id: number, editMusicElem: { title: string }) => void;
@@ -32,9 +31,9 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
         setGenre(event.target.value);
     }
 
-    const [ coverimg, setCoverimg ] = React.useState('');
+    const [coverimg, setCoverimg] = React.useState('');
     const handleCoverimg: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-      setCoverimg(event.target.value);
+        setCoverimg(event.target.value);
     }
 
 
@@ -59,7 +58,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: any) => {
         event.preventDefault();
         setFormSubmitted(true);
-        if (isTitleValid && type === 'create'){
+        if (isTitleValid && type === 'create') {
             console.log('valid');
 
 
@@ -73,67 +72,67 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
             });
             history.push('/shortfilms');
 
-        }else if (type === 'edit' && isTitleValid) {
+        } else if (type === 'edit' && isTitleValid) {
             onEdit(editId!, { title: title });
         } else {
-                console.log('invalid');
-            }
+            console.log('invalid');
         }
-
-
-
-        const date = new Date();
-
-
-
-        return (
-
-            <form className="shortsForm" onSubmit={handleSubmit}>
-
-
-
-
-                <h2>{type === 'create' ? 'New' : 'Edit'} Shortfilm {editId}</h2>
-
-                {type === 'create' &&<label>Title
-                    <input type="text"
-                        onChange={handleTitleChange}
-                        value={title} />
-                    </label>
-                }
-
-                <label>Year</label>
-                <input type="number" min={1900} max={date.getFullYear()} 
-                    onChange={handleYearChange}
-                    value={year} />
-
-                <label>Genre</label>
-
-                <select value={genre} onChange={handleGenreChange}>
-                    <option value="comedy">Comedy</option>
-                    <option value="drama">Drama</option>
-                    <option value="suspense">Suspense</option>
-                    <option value="romance">Romance</option>
-                </select>
-
-                <label>Description</label>
-                <textarea className="descripInput" rows={4} cols={50}
-                    onChange={handleDescriptionChange}
-                    value={description} />
-
-                <button>
-                    {type === 'create' ? 'Create new Shortfilm' : 'Save changes'}
-                </button>
-
-
-
-
-
-            </form>);
     }
 
 
 
-    export default ShortsForm;
+    const date = new Date();
+
+
+
+    return (
+
+        <form className="shortsForm" onSubmit={handleSubmit}>
+
+
+
+
+            <h2>{type === 'create' ? 'New' : 'Edit'} Shortfilm {editId}</h2>
+
+
+            {type === 'create' && <><label>Title</label><input type="text"
+                onChange={handleTitleChange}
+                value={title} /></>
+
+            }
+
+            <label>Year</label>
+            <input type="number" min={1900} max={date.getFullYear()}
+                onChange={handleYearChange}
+                value={year} />
+
+            <label>Genre</label>
+
+            <select value={genre} onChange={handleGenreChange}>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="suspense">Suspense</option>
+                <option value="romance">Romance</option>
+            </select>
+
+            <label>Description</label>
+            <textarea className="descripInput" rows={4} cols={50}
+                onChange={handleDescriptionChange}
+                value={description} />
+
+            <label>Add cover image</label>
+            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="bg"
+                onChange={handleCoverimg}
+                value={coverimg} />
+
+            <button>
+                {type === 'create' ? 'Create new Shortfilm' : 'Save changes'}
+            </button>
+        </form>);
+}
+
+
+
+export default ShortsForm;
 
 

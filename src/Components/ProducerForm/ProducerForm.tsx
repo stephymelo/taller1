@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ProducerElemProps } from '../Producer/ProducerElem';
 import './ProducerForm.css';
 
-interface ProfucerElemFormProps {
+interface ProducerElemFormProps {
     onCreate: (newProducer: {name: string,
         role: string,
         profileimg: string,
@@ -10,7 +10,7 @@ interface ProfucerElemFormProps {
 
 }
 
-const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
+const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
 
 
     const [formSubmitted, setFormSubmitted] = React.useState(false);
@@ -31,15 +31,6 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
 
     const [profileimg, setProfileimg] = React.useState('');
     const handleProfileChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-
-        ///////////////////
-        // if (e.target.input.files.length) {
-        //     const upload_file = e.target.input.files[0];
-        //     const formData = new FormData();
-        //     formData.append('file', upload_file);
-
-       
-        /////////////////////
         console.log(event);
         setProfileimg(event.target.value);
   
@@ -49,12 +40,6 @@ const ProducerForm: React.FC<ProfucerElemFormProps> = ({ onCreate }) => {
     const handleBackgroundimg: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         setBackgroundimg(event.target.value);
     }
-
-    // const [selectedFile, setSelectedFile] = React.useState();
-    // const handleBackgroundimg: React.ChangeEventHandler<HTMLInputElement> = (event) =>  {
-	// 	setSelectedFile(event.target.files[0]);
-	// 	setIsSelected(true);
-	// };
 
 
 
