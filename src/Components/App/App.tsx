@@ -13,19 +13,11 @@ import {
   BrowserRouter as Router,
   Route,
   HashRouter,
+  Switch,
 } from "react-router-dom";
 import { FestivalElemObj } from '../../Types/FestivalElemObj';
 
 
-
-// type ProducerElemObj = ProducerElemProps & {
-//   id: number;
-//   name: string;
-//   role: string;
-//   profileimg: string;
-//   backgroundimg: string;
-
-// }
 function App() {
 
   const [formType, setFormType] = React.useState<'create' | 'edit'>('create');
@@ -70,6 +62,9 @@ function App() {
     setShortElems(newArray);
   }
 
+
+  /// Borrar elemento de Short
+
   const handleDelete = (deleteId: number) => {
 
     const shortElemsCopy = shortElems.filter((elem) => {
@@ -83,8 +78,9 @@ function App() {
   }
 
 
-  const handleEdit = (editId: number, editMusicElem: { title: string }) => {
-    console.log(editId, editMusicElem);
+  /// Editar Short
+  const handleEdit = (editId: number, editShortElem: { title: string }) => {
+    console.log(editId, editShortElem);
 
     const shortElemsCopy = shortElems.slice();
     const editIndex = shortElems.findIndex((elem) => {
@@ -95,7 +91,7 @@ function App() {
     });
     shortElemsCopy[editIndex] = {
       ...shortElems[editIndex],
-      ...editMusicElem,
+      ...editShortElem,
     }
 
     setShortElems(shortElemsCopy);
@@ -137,8 +133,10 @@ function App() {
     <div>
       <HashRouter>
         <Header />
+        <Switch>
         <Route path="/createShortfilms">
-          <div><ShortsForm editId={editId}
+          <div><ShortsForm 
+            editId={editId}
             type={formType}
             onCreate={handleCreate}
             onEdit={handleEdit} />
@@ -169,6 +167,7 @@ function App() {
         </div> */}
 
         </Route>
+       
         <Route path="/festivals/:id">
             <FestivalElem
               list={shortElems}
@@ -179,6 +178,8 @@ function App() {
         <Route path="/festivals">
 
         </Route>
+        
+        </Switch>
 
       </HashRouter>
     </div >

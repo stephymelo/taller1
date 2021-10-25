@@ -5,6 +5,8 @@ import { FestivalElemObj } from '../../Types/FestivalElemObj';
 import { ShortElemObj } from '../../Types/ShortElemObj';
 import ShortsElem from '../Shorts/ShortsElem';
 import FestivalForm from './FestivalForm';
+import './Festival.css';
+
 
 interface FestivalElemProps {
     list: ShortElemObj[];
@@ -47,7 +49,7 @@ const FestivalElem: React.FC<FestivalElemProps> = ({list, onCreateFestival}) =>{
                 id={id}
                 type="festival" festivals={[]}      />
 
-      <h2>Total festivals: {festivals.length}</h2>
+      <h2 className="festivaltitle">Total festivals: {festivals.length}</h2>
 
       <ol>
         {festivals.map(festivalElem => {

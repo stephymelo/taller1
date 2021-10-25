@@ -18,7 +18,7 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreate }) => {
     }
 
     const [season, setSeason] = React.useState('');
-    const handleSeasonChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const handleSeasonChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
         setSeason(event.target.value);
     }
     const [award, setAward] = React.useState('');
@@ -28,7 +28,7 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreate }) => {
 
     const isSeasonValid = season.length >= 5
 
-   
+
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
@@ -50,17 +50,22 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreate }) => {
     }
 
     return (<div>
-        <form className="producerForm" onSubmit={handleSubmit}>
+        <form className="festivalForm" onSubmit={handleSubmit}>
             <input
                 type="text"
                 onChange={handleTitleChange}
                 value={title}
             />
-            <input
-                type="text"
-                onChange={handleSeasonChange}
-                value={title}
-            />
+           
+            <label>Season</label>
+
+            <select value={season} onChange={handleSeasonChange}>
+                <option value="winter">Winter</option>
+                <option value="spring">Spring</option>
+                <option value="summer">Summer</option>
+                <option value="fall">Fall</option>
+            </select>
+            
             <input
                 type="text"
                 onChange={handleAwardChange}

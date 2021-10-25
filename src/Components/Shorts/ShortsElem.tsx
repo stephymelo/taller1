@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './ShortsElem.css';
 import cover from '../Images/img.png';
+import { Link, useHistory } from 'react-router-dom';
 import { ShortElemObj } from '../../Types/ShortElemObj';
 import { GetReviewNum } from '../../Utils/GetReviewNum';
 
@@ -13,8 +14,9 @@ export type ShortsElemProps = ShortElemObj & {
 }
 
 
-const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,coverimg, description, onDelete, onEdit, type}) => {
+const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,coverimg, description, onDelete, onEdit,type}) => {
 
+  const history = useHistory();
 
 
 
@@ -31,6 +33,16 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
   
   }
 
+  // const [newReview, setReview] = React.useState(0);
+  // const handleReview: React.MouseEventHandler<HTMLButtonElement> = () => {
+  //   setReview(Number.parseInt(event.target.value));
+  // }
+
+
+  const handleView: React.MouseEventHandler<HTMLButtonElement> = () => {
+    history.push(`/festivals/${id}`);
+  }
+
 
   return (<article className="ShortfilmsPage">
     <section className="shortfilm" >
@@ -44,17 +56,24 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
         <h4>{genre}</h4>
         <p>{description}</p>
         {review.length>0 ? <h5>Review: {GetReviewNum(review)} </h5>: null}
+        <div className="rating">
+          <label>Rating</label><input type="number" min={0} max={5}></input>
+          {/* All dar click en Add, agrega al review.length */}
+          <button>Add</button>
+        </div>
+            
       
         {type === 'edit' && <div className="btnDiv">
-          <button className="button" onClick={handleDelete}>delete</button>
-          <button className="button" onClick={handleEdit}>edit</button>
+          <button onClick={handleView}>view</button>{onDelete &&
+          <button className="button" onClick={handleDelete}>delete</button>}
+          {onEdit&&<button className="button" onClick={handleEdit}>edit</button>}
       </div>
       }
       </div>
       
     </section>
 
-
+   
 
   </article>);
 }
