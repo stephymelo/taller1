@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShortElemObj } from '../Components/App/App';
+import { ShortElemObj } from '../Types/ShortElemObj';
 
 
 export function GetReviewNum (review:ShortElemObj["review"]):number{

@@ -4,6 +4,7 @@ import ShortsForm from '../ShortsForm/ShortsForm';
 import ShortsElem, { ShortsElemProps } from '../Shorts/ShortsElem';
 import FestivalElem from '../Festival/Festival';
 import FestivalForm from '../Festival/FestivalForm';
+import { ShortElemObj } from '../../Types/ShortElemObj';
 import { GetReviewNum } from '../../Utils/GetReviewNum';
 import ProducerForm from '../ProducerForm/ProducerForm';
 import ProducerElem, { ProducerElemProps } from '../Producer/ProducerElem';
@@ -13,6 +14,7 @@ import {
   Route,
   HashRouter,
 } from "react-router-dom";
+import { FestivalElemObj } from '../../Types/FestivalElemObj';
 
 
 
@@ -24,17 +26,6 @@ import {
 //   backgroundimg: string;
 
 // }
-
-export type ShortElemObj = {
-  id: number;
-  coverimg: string;
-  genre: string;
-  year: number;
-  description: string;
-  title: string;
-  review:number[];
-}
-
 function App() {
 
   const [formType, setFormType] = React.useState<'create' | 'edit'>('create');
@@ -47,7 +38,15 @@ function App() {
       year: 2020,
       description: 'Shrek is an anti-social and highly-territorial green ogre who loves the solitude of his swamp. His life is interrupted after the dwarfish Lord Farquaad of Duloc unknowingly exiles a vast number of fairy-tale creatures to Shreks swamp. Angered by the intrusion, he decides to visit Farquaad and demand they be moved elsewhere. He reluctantly allows the talkative Donkey, who was exiled as well, to tag along and guide him to Duloc. Meanwhile, Farquaad is presented with Snow Whites Magic Mirror, who tells him that in order to become a true king, he must marry a princess',
       title: 'Skins',
-      review:[0,1,0,0,5,4,2,1,3,4]      
+      review:[0,1,0,0,5,4,2,1,3,4],  
+      festivals: [
+        {
+        id:0,
+        title:"Sundance",
+        season:"Winter",
+        award:"yes"
+        }
+      ] 
     },
   ]);
 
@@ -64,7 +63,8 @@ function App() {
         year: newShortElem.year,
         coverimg: newShortElem.coverimg,
         description: newShortElem.description,
-        review:[]
+        review:[],
+        festivals:[]
       }
     ];
     setShortElems(newArray);
@@ -107,7 +107,7 @@ function App() {
   }
     
 
-  const handleCreateFestival = (shortElemId: number, newShortElem: ShortElemObj) => {
+  const handleCreateFestival = (shortElemId: number, newFestivalElem: FestivalElemObj) => {
 
     const shortElemCopy = shortElems.slice();
     const editIndex = shortElems.findIndex((elem) => {
@@ -172,10 +172,10 @@ function App() {
         <Route path="/festivals/:id">
             <FestivalElem
               list={shortElems}
-              onCreateSong={handleCreateFestival}
+              onCreateFestival={handleCreateFestival}
               />
           </Route>
-          
+
         <Route path="/festivals">
 
         </Route>

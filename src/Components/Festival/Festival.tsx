@@ -27,15 +27,49 @@ const FestivalElem: React.FC<FestivalElemProps> = ({list, onCreateFestival}) =>{
       if(!elem) {
         return <Redirect to="/404" />;
       }
-      const { title, season, award } = elem;
+      const { coverimg,genre,year,description,title,review,festivals } = elem;
     
-      const handleCreateSongElem = (newFestivalElem: FestivalElemObj) => {
+      const handleCreateFestivalElem = (newFestivalElem: FestivalElemObj) => {
         onCreateFestival(id, newFestivalElem);
       }
     
 
 
-    return(<div></div>);
+    return(<div>
+        <Route path="/festival/:id">
+      <ShortsElem
+                title={title}
+                year={year}
+                genre={genre}
+                description={description}
+                coverimg={coverimg}
+                review={review}
+                id={id}
+                type="festival" festivals={[]}      />
+
+      <h2>Total festivals: {festivals.length}</h2>
+
+      <ol>
+        {festivals.map(festivalElem => {
+          return <li key={festivalElem.id}>{festivalElem.title} - {festivalElem.season}-{festivalElem.award}</li>
+        })}
+      </ol>
+
+      <Link to={`/festival/${id}/new-festival`}>Add festival</Link>
+    </Route>
+
+    <Route path="/festival/:id/new-festival">
+      <FestivalForm
+        onCreate={handleCreateFestivalElem}
+      />
+    </Route>
+
+
+
+
+
+
+    </div>);
 }
 
 

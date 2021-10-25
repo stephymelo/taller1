@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './ShortsElem.css';
 import cover from '../Images/img.png';
-import { ShortElemObj } from '../App/App';
+import { ShortElemObj } from '../../Types/ShortElemObj';
 import { GetReviewNum } from '../../Utils/GetReviewNum';
 
 export type ShortsElemProps = ShortElemObj & {
-  onDelete: (id: number) => void;
-  onEdit: (id: number) => void;
-  type: 'detail'|'edit';
+  onDelete?: (id: number) => void;
+  onEdit?: (id: number) => void;
+  type: 'festival'|'edit';
 
 
 }
@@ -19,10 +19,16 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
 
   const handleDelete: React.MouseEventHandler<HTMLButtonElement> = () => {
-    onDelete(id);
+    if(onDelete){
+      onDelete(id);
+    }
+    
   }
   const handleEdit: React.MouseEventHandler<HTMLButtonElement> = () => {
-    onEdit(id);
+    if(onEdit){
+      onEdit(id);
+    }
+  
   }
 
 

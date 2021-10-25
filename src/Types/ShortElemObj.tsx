@@ -2,13 +2,12 @@ import { FestivalElemObj } from "./FestivalElemObj"
 
 export type ShortElemObj = {
   id: number;
+  coverimg: string;
+  genre: string;
+  year: number;
+  description: string;
   title: string;
-  genre: string,
-  year: number,
-  coverimg: string,
-  review:number,
-  description: string
-
+  review:number[];
   festivals: FestivalElemObj[];
 
 }
