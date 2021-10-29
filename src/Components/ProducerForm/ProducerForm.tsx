@@ -3,7 +3,8 @@ import { ProducerElemProps } from '../Producer/ProducerElem';
 import './ProducerForm.css';
 
 interface ProducerElemFormProps {
-    onCreate: (newProducer: {name: string,
+    onCreate: (newProducer: {
+        name: string,
         role: string,
         profileimg: string,
         backgroundimg: string}) => void;

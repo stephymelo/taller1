@@ -7,6 +7,8 @@ export type ShortElemObj = {
   year: number;
   description: string;
   title: string;
+  producerID: string| undefined;
+  producerName: string| undefined;
   review:number[];
   festivals: FestivalElemObj[];
 

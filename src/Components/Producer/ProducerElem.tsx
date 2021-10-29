@@ -7,7 +7,7 @@ export interface ProducerElemProps {
   role: string;
   profileimg: string;
   backgroundimg: string;
-  onDelete: (id: number) => void;
+  onDelete?: (id: number) => void;
 
 }
 
@@ -21,8 +21,12 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, name,role, profileimg, 
   }
 
   const handleDelete: React.MouseEventHandler<HTMLButtonElement> = () => {
-    onDelete(id);
+    if(onDelete){
+      onDelete(id);
+    }
+    
   }
+
 
   return (<article className="ProducerPage">
     <section className="profileBanner" ></section>
@@ -33,8 +37,11 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, name,role, profileimg, 
     <div>
     <h2>{name}</h2>
     <h3>{role}</h3>
+    <div>
+      <h2>Shorts</h2>
+      <div className="container_shorts"></div>
+    </div>
     <button onClick={handleDelete}>delete</button>
-
     </div>
     
     

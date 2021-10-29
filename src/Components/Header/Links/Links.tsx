@@ -32,7 +32,7 @@ const Links: React.FC<Links> = ({ }) => {
                         <Link className="elem" to="/createProducer">Sign up</Link>
                     </li>
                     <li>
-                        <Link className="elem" to="/festivals">Festivals </Link>
+                        <Link className="elem" to="/festivals/0">Festivals</Link>
                     </li>
                     
                 </ul>

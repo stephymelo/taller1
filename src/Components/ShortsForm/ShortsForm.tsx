@@ -3,16 +3,17 @@ import { ShortsElemProps } from '../Shorts/ShortsElem';
 import { useHistory } from 'react-router';
 
 import './ShortsForm.css';
+import { ProducerElemProps } from '../Producer/ProducerElem';
 
 interface ShortElemFormProps {
     editId: number | null;
     type: 'create' | 'edit';
-    onCreate: (newShort: { title: string, genre: string, year: number, description: string, coverimg: string }) => void;
+    onCreate: (newShort: { title: string, genre: string, year: number, description: string, coverimg: string,  producerName: string | undefined, producerID: string | undefined }) => void;
     onEdit: (id: number, editMusicElem: { title: string }) => void;
-
+    producerElems: ProducerElemProps[];
 }
 
-const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEdit }) => {
+const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEdit, producerElems }) => {
     const history = useHistory();
 
 
@@ -47,6 +48,12 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
         setDescription(event.target.value);
     }
 
+    const [producer, setProducer] = React.useState({producerName: "", producerID: ""});
+    const handleProducer: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+        setProducer({producerName:event.target.innerText, producerID:event.target.value});
+        console.log(producer)
+    }
+
 
 
 
@@ -61,14 +68,16 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
         if (isTitleValid && type === 'create') {
             console.log('valid');
 
-
+            console.log({producer});
+            
             onCreate({
                 title: title,
                 genre: genre,
                 year: year,
                 coverimg: "string",
-                description: description
-
+                description: description,
+                producerID : producer.producerID,
+                producerName: producer.producerName
             });
             history.push('/shortfilms');
 
@@ -124,6 +133,16 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
             <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="bg"
                 onChange={handleCoverimg}
                 value={coverimg} />
+
+            <label>Add Producer</label>
+            <select name="producers" onChange={handleProducer}>
+                <option value="none">Select option</option>
+                {
+                    producerElems.map(producer => {
+                        return <option value={producer.id} className={producer.name}>{producer.name}</option>
+                    })
+                }
+            </select>
 
             <button>
                 {type === 'create' ? 'Create new Shortfilm' : 'Save changes'}

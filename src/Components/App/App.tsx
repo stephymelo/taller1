@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../Header/Header';
 import ShortsForm from '../ShortsForm/ShortsForm';
-import ShortsElem, { ShortsElemProps } from '../Shorts/ShortsElem';
+import ShortsElem, { /*ShortsElemProps*/ } from '../Shorts/ShortsElem';
 import FestivalElem from '../Festival/Festival';
 import FestivalForm from '../Festival/FestivalForm';
 import { ShortElemObj } from '../../Types/ShortElemObj';
-import { GetReviewNum } from '../../Utils/GetReviewNum';
+//import { GetReviewNum } from '../../Utils/GetReviewNum';
 import ProducerForm from '../ProducerForm/ProducerForm';
 import ProducerElem, { ProducerElemProps } from '../Producer/ProducerElem';
 import './App.css';
@@ -30,19 +30,21 @@ function App() {
       year: 2020,
       description: 'Shrek is an anti-social and highly-territorial green ogre who loves the solitude of his swamp. His life is interrupted after the dwarfish Lord Farquaad of Duloc unknowingly exiles a vast number of fairy-tale creatures to Shreks swamp. Angered by the intrusion, he decides to visit Farquaad and demand they be moved elsewhere. He reluctantly allows the talkative Donkey, who was exiled as well, to tag along and guide him to Duloc. Meanwhile, Farquaad is presented with Snow Whites Magic Mirror, who tells him that in order to become a true king, he must marry a princess',
       title: 'Skins',
-      review:[0,1,0,0,5,4,2,1,3,4],  
+      review: [0, 1, 0, 0, 5, 4, 2, 1, 3, 4],
+      producerID: undefined,
+      producerName: undefined,
       festivals: [
         {
-        id:0,
-        title:"Sundance",
-        season:"Winter",
-        award:"yes"
+          id: 0,
+          title: "Sundance",
+          season: "Winter",
+          award: "yes"
         }
-      ] 
+      ]
     },
   ]);
 
-  const handleCreate = (newShortElem: { title: string, genre: string, year: number, coverimg: string, description: string }) => {
+  const handleCreate = (newShortElem: { title: string, genre: string, year: number, coverimg: string, description: string, producerName: string | undefined, producerID: string | undefined}) => {
 
 
 
@@ -55,12 +57,33 @@ function App() {
         year: newShortElem.year,
         coverimg: newShortElem.coverimg,
         description: newShortElem.description,
-        review:[],
-        festivals:[]
+        producerID: newShortElem.producerID,
+        producerName: newShortElem.producerName,
+        review: [],
+        festivals: []
       }
     ];
     setShortElems(newArray);
   }
+
+  const [producerElems, setProducerElems] = React.useState<ProducerElemProps[]>([])
+
+  const handleCreateProducer = (newProducer: { name: string, role: string, profileimg: string, backgroundimg: string }) => {
+    const newArray = [
+      ...producerElems,
+      {
+        id: Math.random(),
+        name: newProducer.name,
+        role: newProducer.role,
+        profileimg: newProducer.profileimg,
+        backgroundimg: newProducer.backgroundimg,
+
+      }
+    ];
+    setProducerElems(newArray);
+  }
+
+
 
 
   /// Borrar elemento de Short
@@ -101,13 +124,14 @@ function App() {
     setEditId(editId);
     setFormType('edit');
   }
-    
+
 
   const handleCreateFestival = (shortElemId: number, newFestivalElem: FestivalElemObj) => {
-
+    console.log({shortElemId});
+    console.log({newFestivalElem})
     const shortElemCopy = shortElems.slice();
     const editIndex = shortElems.findIndex((elem) => {
-      if(elem.id === shortElemId) {
+      if (elem.id === shortElemId) {
         return true;
       }
       return false;
@@ -134,51 +158,79 @@ function App() {
       <HashRouter>
         <Header />
         <Switch>
-        <Route path="/createShortfilms">
-          <div><ShortsForm 
-            editId={editId}
-            type={formType}
-            onCreate={handleCreate}
-            onEdit={handleEdit} />
-          </div>
+          <Route path="/createShortfilms">
+            <div><ShortsForm
+              editId={editId}
+              type={formType}
+              onCreate={handleCreate}
+              onEdit={handleEdit}
+              producerElems={producerElems}
+               />
+            </div>
 
-        </Route>
-
-        <Route path="/shortfilms">
-          {shortElems.map((elem) => {
-            return <ShortsElem key={elem.id} {...elem}onDelete={handleDelete} type="edit"
-              onEdit={handleBeginEdit}/>;
-          })}
-        </Route>
-        <Route path="/producer">
-        {/* {producerElems.map((elem) => {
-          return <ProducerElem 
-          key={elem.id} id={elem.id} name={elem.name} role={elem.role} profileimg={elem.profileimg} backgroundimg={elem.backgroundimg} onDelete={handleDelete}onEdit={handleBeginEdit} />;
-        })} */}
-
-        </Route>
-
-        <Route path="/createProducer">
-          {/* <h2>ProducerUser</h2><div>
-        <ProducerForm editId={editId}
-            type={formType}
-            onCreate={handleCreate}
-            onEdit={handleEdit} />
-        </div> */}
-
-        </Route>
-       
-        <Route path="/festivals/:id">
-            <FestivalElem
-              list={shortElems}
-              onCreateFestival={handleCreateFestival}
-              />
           </Route>
 
-        <Route path="/festivals">
+          <Route path="/shortfilms">
+            {shortElems.map((elem) => {
+              return <ShortsElem key={elem.id} {...elem} onDelete={handleDelete} type="edit"
+                onEdit={handleBeginEdit} />;
+            })}
+          </Route>
+        //productor
+          <Route path="/producer">
+            {
+              producerElems.map((elem) => {
+                return <ProducerElem
+                  key={elem.id}
+                  id={elem.id}
+                  name={elem.name}
+                  role={elem.role}
+                  profileimg={elem.profileimg}
+                  backgroundimg={elem.backgroundimg}
+                  onDelete={handleDelete}
+                //onEdit={handleBeginEdit} 
+                />;
+              })
+            }
 
-        </Route>
-        
+          </Route>
+
+          <Route path="/createProducer">
+            <div>
+              <h2>ProducerUser</h2>
+              <div>
+                <ProducerForm
+                  //editId={editId}
+                  //type={formType}
+                  onCreate={handleCreateProducer}
+                  /*onEdit={handleEdit} */ />
+              </div>
+            </div>
+            { }
+
+          </Route>
+
+
+          <Route exact={true} path="/festivals/:id">
+            <div>
+              <h2>Festival</h2>
+              <FestivalElem
+                list={shortElems}
+                onCreateFestival={handleCreateFestival}
+              />
+            </div>
+          </Route>
+
+          <Route path='/404' exact={true}  >
+            {
+              <div>
+                <h2>Error 404</h2>
+                <p>Some error occurred, please try again.</p>
+              </div>
+
+            }
+          </Route>
+
         </Switch>
 
       </HashRouter>

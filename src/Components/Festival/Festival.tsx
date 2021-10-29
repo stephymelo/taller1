@@ -1,78 +1,58 @@
-import * as React from 'react';
-import { Redirect, Route, useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect, useParams } from 'react-router';
 import { FestivalElemObj } from '../../Types/FestivalElemObj';
 import { ShortElemObj } from '../../Types/ShortElemObj';
-import ShortsElem from '../Shorts/ShortsElem';
 import FestivalForm from './FestivalForm';
 import './Festival.css';
 
+const Festival = ({ fest }: any) => {
+  return (<>
 
-interface FestivalElemProps {
-    list: ShortElemObj[];
-    onCreateFestival: (shortElemId: number, newFestivalElem: FestivalElemObj)=> void;
+    <li key={fest.id}>{fest.title} - {fest.season}-{fest.award}</li>
+  </>);
+}
+
+const FestivalDetails = ({ fest }: any) => {
+  return (<div key={fest.id}>
+    <h1>{fest.title}</h1>
+    <h2>{fest.season}</h2>
+    <h2>{fest.award}</h2>
+  </div>);
+}
+
+interface FestivalsProps {
+  list: ShortElemObj[];
+  onCreateFestival: (shortElemId: number, newFestivalElem: FestivalElemObj) => void;
 }
 
 
-const FestivalElem: React.FC<FestivalElemProps> = ({list, onCreateFestival}) =>{
-    const { id: idString } = useParams<{ id: string }>();
-    const id = parseFloat(idString);
+const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
+  const { festivals } = list[0];
+  const [selected, setSelected] = useState<any>();
+  const { id: idString } = useParams<{ id: string }>();
+  const id = parseFloat(idString);
 
-    const elem = list.find((elem) => {
-        if(elem.id === id) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    
-      if(!elem) {
-        return <Redirect to="/404" />;
-      }
-      const { coverimg,genre,year,description,title,review,festivals } = elem;
-    
-      const handleCreateFestivalElem = (newFestivalElem: FestivalElemObj) => {
-        onCreateFestival(id, newFestivalElem);
-      }
-    
+  if (!festivals.length) {
+    return <Redirect to="/404" />;
+  }
 
-
-    return(<div>
-        <Route path="/festival/:id">
-      <ShortsElem
-                title={title}
-                year={year}
-                genre={genre}
-                description={description}
-                coverimg={coverimg}
-                review={review}
-                id={id}
-                type="festival" festivals={[]}      />
-
-      <h2 className="festivaltitle">Total festivals: {festivals.length}</h2>
-
+  console.log(id)
+  return <>
+    {selected ?
+      //Selected details option
+      <FestivalDetails fest={selected} />
+      :
+      //list of all festivals
       <ol>
-        {festivals.map(festivalElem => {
-          return <li key={festivalElem.id}>{festivalElem.title} - {festivalElem.season}-{festivalElem.award}</li>
-        })}
+        {festivals.map(fest => <button onClick={() => setSelected(fest)}> <Festival fest={fest} /></button>)}
       </ol>
+    }
 
-      <Link to={`/festival/${id}/new-festival`}>Add festival</Link>
-    </Route>
-
-    <Route path="/festival/:id/new-festival">
-      <FestivalForm
-        onCreate={handleCreateFestivalElem}
-      />
-    </Route>
-
-
-
-
-
-
-    </div>);
+    <h2 className="festivaltitle">Total festivals: {festivals.length}</h2>
+    {true && <FestivalForm onCreateFestival={onCreateFestival} shortElemId={id} />}
+  </>
 }
 
 
-export default FestivalElem;
+
+export default Festivals;

@@ -3,13 +3,13 @@ import { useHistory } from 'react-router';
 import { FestivalElemObj } from '../../Types/FestivalElemObj';
 
 interface FestivalFormProps {
-    onCreate: (newFestivalElem: FestivalElemObj) => void;
-
+    onCreateFestival: (shortElemId: number, newFestivalElem: FestivalElemObj) => void;
+    shortElemId: number;
 }
 
 
 
-const FestivalForm: React.FC<FestivalFormProps> = ({ onCreate }) => {
+const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElemId }) => {
     const history = useHistory();
 
     const [title, setTitle] = React.useState('');
@@ -42,8 +42,9 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreate }) => {
 
         }
 
-        onCreate(newFestivalElem);
-        history.goBack();
+        console.log({newFestivalElem})
+        onCreateFestival(shortElemId,newFestivalElem);
+        //history.goBack();
 
 
 
