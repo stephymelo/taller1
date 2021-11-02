@@ -1,42 +1,64 @@
-.descripInput{
+.descripInput {}
 
+form {
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 340px;
+    align-self: center;
+    justify-content: center;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-form{
-    margin-top:60px;
-    margin-left:50px;
-    
-}
-select{
-    padding:5px 10px 5px 10px;
+select {
+    padding: 5px 10px 5px 10px;
     border-width: 1.5px;
-    border-color:gray;
-    border-style:solid;
+    border-color: gray;
+    border-style: solid;
     border-radius: 10px;
     margin-bottom: 10px;
 }
 
-textarea{
-    padding:5px 10px 5px 10px;
+textarea {
+    padding: 5px 10px 5px 10px;
     border-width: 1.5px;
-    border-color:gray;
-    border-style:solid;
+    border-color: gray;
+    border-style: solid;
     border-radius: 10px;
     margin-bottom: 10px;
+    font-family: "Noir Pro", sans-serif;
+}
 
-}
-input{
-    padding:5px 10px 5px 10px;
+input {
+    padding: 5px 10px 5px 10px;
     border-width: 1.5px;
-    border-color:gray;
-    border-style:solid;
+    border-color: gray;
+    border-style: solid;
     border-radius: 10px;
     margin-bottom: 10px;
 }
-label{
+
+label {
     display: flex;
-    margin-top:20px;
+    margin-top: 20px;
     margin-bottom: 10px;
-
 }
 
+.inputDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.inputDiv__1 {
+    margin-right: 30px;
+}
+
+.inputDiv__2 {
+    margin-left: 30px;
+}

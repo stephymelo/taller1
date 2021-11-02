@@ -5,6 +5,7 @@ import ShortsElem, { /*ShortsElemProps*/ } from '../Shorts/ShortsElem';
 import FestivalElem from '../Festival/Festival';
 import FestivalForm from '../Festival/FestivalForm';
 import { ShortElemObj } from '../../Types/ShortElemObj';
+import { ProducerElemObj } from '../../Types/ProducerElemObj';
 //import { GetReviewNum } from '../../Utils/GetReviewNum';
 import ProducerForm from '../ProducerForm/ProducerForm';
 import ProducerElem, { ProducerElemProps } from '../Producer/ProducerElem';
@@ -18,10 +19,25 @@ import {
 import { FestivalElemObj } from '../../Types/FestivalElemObj';
 
 
+
 function App() {
 
   const [formType, setFormType] = React.useState<'create' | 'edit'>('create');
   const [editId, setEditId] = React.useState<number | null>(null);
+  const [producerElems,setProducerElems] = React.useState<ProducerElemObj[]>([
+   {
+     id:0,
+     firstname: 'Stephy',
+     lastname: 'Melo',
+     role: 'Director Malo',
+     backgroundimg: 'asadw',
+     profileimg:'adwdq'
+    } 
+
+  ]);
+
+  
+  
   const [shortElems, setShortElems] = React.useState<ShortElemObj[]>([
     {
       id: 0,
@@ -30,24 +46,21 @@ function App() {
       year: 2020,
       description: 'Shrek is an anti-social and highly-territorial green ogre who loves the solitude of his swamp. His life is interrupted after the dwarfish Lord Farquaad of Duloc unknowingly exiles a vast number of fairy-tale creatures to Shreks swamp. Angered by the intrusion, he decides to visit Farquaad and demand they be moved elsewhere. He reluctantly allows the talkative Donkey, who was exiled as well, to tag along and guide him to Duloc. Meanwhile, Farquaad is presented with Snow Whites Magic Mirror, who tells him that in order to become a true king, he must marry a princess',
       title: 'Skins',
-      review: [0, 1, 0, 0, 5, 4, 2, 1, 3, 4],
-      producerID: undefined,
-      producerName: undefined,
+      review: [1, 1, 2, 3, 5, 4, 2, 1, 3, 4],
+      producerID: '0',
+      producerName: 'Stephy',
       festivals: [
         {
           id: 0,
           title: "Sundance",
           season: "Winter",
-          award: "yes"
+          award: "Best Film"
         }
       ]
     },
   ]);
 
   const handleCreate = (newShortElem: { title: string, genre: string, year: number, coverimg: string, description: string, producerName: string | undefined, producerID: string | undefined}) => {
-
-
-
     const newArray = [
       ...shortElems,
       {
@@ -66,14 +79,15 @@ function App() {
     setShortElems(newArray);
   }
 
-  const [producerElems, setProducerElems] = React.useState<ProducerElemProps[]>([])
+  // const [producerElems, setProducerElems] = React.useState<ProducerElemProps[]>([])
 
-  const handleCreateProducer = (newProducer: { name: string, role: string, profileimg: string, backgroundimg: string }) => {
+  const handleCreateProducer = (newProducer: ProducerElemObj ) => {
     const newArray = [
       ...producerElems,
       {
         id: Math.random(),
-        name: newProducer.name,
+        firstname: newProducer.firstname,
+        lastname: newProducer.lastname,
         role: newProducer.role,
         profileimg: newProducer.profileimg,
         backgroundimg: newProducer.backgroundimg,
@@ -183,12 +197,12 @@ function App() {
                 return <ProducerElem
                   key={elem.id}
                   id={elem.id}
-                  name={elem.name}
+                  firstname={elem.firstname}
+                  lastname={elem.lastname}
                   role={elem.role}
                   profileimg={elem.profileimg}
                   backgroundimg={elem.backgroundimg}
-                  onDelete={handleDelete}
-                //onEdit={handleBeginEdit} 
+                  shortFims={shortElems}
                 />;
               })
             }
@@ -197,13 +211,10 @@ function App() {
 
           <Route path="/createProducer">
             <div>
-              <h2>ProducerUser</h2>
               <div>
                 <ProducerForm
-                  //editId={editId}
-                  //type={formType}
                   onCreate={handleCreateProducer}
-                  /*onEdit={handleEdit} */ />
+                />
               </div>
             </div>
             { }

@@ -1,0 +1,101 @@
+.producerPage {}
+
+.profileBanner {
+    position: relative;
+    width: 90%;
+    margin-top: 100px;
+    justify-content: center;
+    margin-left: 400px;
+}
+
+.banner {
+    width: 52%;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.profileimg {
+    padding-bottom: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 150px;
+    width: 200px;
+    border-radius: 10px
+}
+
+.profile {
+    display: flex;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+}
+
+.names {
+    display: flex;
+}
+
+.name__1 {
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.name__2 {
+    color: white;
+}
+
+.role__1 {
+    height: 20px;
+    margin-left: 20px;
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+
+.shorth3 {
+    color: black;
+}
+
+.proyects {
+    position: absolute;
+    margin-top: 150px;
+    padding-bottom: 50px;
+    top: 0;
+    left: 1;
+    z-index: -10;
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 50%;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 24px 24px;
+}
+
+.container_shorts {}
+
+.shortElem {
+    display: flex;
+    align-content: space-around;
+}
+
+.title {
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: rgb(82, 82, 82);
+}
+
+.shortdiv {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.shortimg {
+    width: 30%;
+}

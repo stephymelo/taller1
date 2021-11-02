@@ -26,10 +26,10 @@ const Links: React.FC<Links> = ({ }) => {
                         <Link className="elem" to="/shortfilms">Short films</Link>
                     </li>
                     <li>
-                        <Link className="elem" to="/producer">My page</Link>
+                        <Link className="elem" to="/producer">Producers</Link>
                     </li>
                     <li>
-                        <Link className="elem" to="/createProducer">Sign up</Link>
+                        <Link className="elem" to="/createProducer">Add Producer</Link>
                     </li>
                     <li>
                         <Link className="elem" to="/festivals/0">Festivals</Link>

@@ -1,47 +1,85 @@
-.shortfilm{
-    margin-top:40px;
-    margin-left:50px;
+.shortfilm {
+    margin-top: 40px;
+    margin-left: 50px;
     display: flex;
-    width:90%;
-    
+    width: 90%;
+    min-height: 300px;
 }
 
-.button{
+.genre {
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cacaca;
+    padding-left: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 10%;
+}
+
+.button {
     font-family: "Noir Pro", sans-serif;
-    font-size:14px;
-    color:white;
+    font-size: 14px;
+    color: white;
     border-radius: 20px;
     border-style: none;
-    padding:5px;
-    padding-left:10px;
-    padding-right:10px;
-    background-color: #87A1FF;
-    margin-left:10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #cacaca;
+    margin-left: 10px;
 }
 
-.coverimg{
-    width:600px;
-
+.coverimg {
+    width: 600px;
+    border-radius: 20px;
 }
 
-.btnDiv{
-    right:0;
-    top:0;
+.btnDiv {
+    right: 0;
+    top: 0;
     position: absolute;
-}
-.imgDiv{
+    padding-top: 30px;
+    padding-right: 10px;
 }
 
-.infoDiv{
-    
+.imgDiv {
+    padding-top: 20px;
+}
+
+.infoDiv {
     position: relative;
-    padding-bottom:10px;
-    padding-top:10px;
-    padding-right:100px;
-    padding-left:20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 100px;
+    padding-left: 20px;
     box-shadow: -5px 5px 8px rgba(0, 0, 0, 0.25);
     border-radius: 24px;
-    margin-left:50px;
-    width:600px;
+    margin-left: 50px;
+    width: 600px;
+}
 
+.ratings {
+    display: flex;
+    flex-direction: row;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+    padding-top: 20px;
+    height: 50%;
+    margin-bottom: 0px;
+    align-content: center;
+    justify-content: center;
+}
+
+#inputReview {}
+
+.addbtn {
+    margin-top: 0px;
+    height: 90%;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

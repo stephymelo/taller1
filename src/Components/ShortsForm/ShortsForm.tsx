@@ -8,7 +8,7 @@ import { ProducerElemProps } from '../Producer/ProducerElem';
 interface ShortElemFormProps {
     editId: number | null;
     type: 'create' | 'edit';
-    onCreate: (newShort: { title: string, genre: string, year: number, description: string, coverimg: string,  producerName: string | undefined, producerID: string | undefined }) => void;
+    onCreate: (newShort: { title: string, genre: string, year: number, description: string, coverimg: string, producerName: string | undefined, producerID: string | undefined }) => void;
     onEdit: (id: number, editMusicElem: { title: string }) => void;
     producerElems: ProducerElemProps[];
 }
@@ -48,9 +48,9 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
         setDescription(event.target.value);
     }
 
-    const [producer, setProducer] = React.useState({producerName: "", producerID: ""});
+    const [producer, setProducer] = React.useState({ producerName: "", producerID: "" });
     const handleProducer: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-        setProducer({producerName:event.target.innerText, producerID:event.target.value});
+        setProducer({ producerName: event.target.innerText, producerID: event.target.value });
         console.log(producer)
     }
 
@@ -59,29 +59,29 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
 
 
 
-    const isTitleValid = title.length >= 5 && title.length <= 10;
+    
 
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: any) => {
         event.preventDefault();
         setFormSubmitted(true);
-        if (isTitleValid && type === 'create') {
+        if (type === 'create') {
             console.log('valid');
 
-            console.log({producer});
-            
+            console.log({ producer });
+
             onCreate({
                 title: title,
                 genre: genre,
                 year: year,
                 coverimg: "string",
                 description: description,
-                producerID : producer.producerID,
+                producerID: producer.producerID,
                 producerName: producer.producerName
             });
             history.push('/shortfilms');
 
-        } else if (type === 'edit' && isTitleValid) {
+        } else if (type === 'edit' ) {
             onEdit(editId!, { title: title });
         } else {
             console.log('invalid');
@@ -110,19 +110,24 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
 
             }
 
-            <label>Year</label>
-            <input type="number" min={1900} max={date.getFullYear()}
-                onChange={handleYearChange}
-                value={year} />
+            <div className="inputDiv">
 
-            <label>Genre</label>
-
-            <select value={genre} onChange={handleGenreChange}>
-                <option value="comedy">Comedy</option>
-                <option value="drama">Drama</option>
-                <option value="suspense">Suspense</option>
-                <option value="romance">Romance</option>
-            </select>
+                <div className="inputDiv__1">
+                    <label>Year</label>
+                    <input type="number" min={1900} max={date.getFullYear()}
+                        onChange={handleYearChange}
+                        value={year} />
+                </div>
+                <div className="inputDiv__2">
+                    <label>Genre</label>
+                    <select value={genre} onChange={handleGenreChange}>
+                        <option value="comedy">Comedy</option>
+                        <option value="drama">Drama</option>
+                        <option value="suspense">Suspense</option>
+                        <option value="romance">Romance</option>
+                    </select>
+                </div>
+            </div>
 
             <label>Description</label>
             <textarea className="descripInput" rows={4} cols={50}
@@ -139,7 +144,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
                 <option value="none">Select option</option>
                 {
                     producerElems.map(producer => {
-                        return <option value={producer.id} className={producer.name}>{producer.name}</option>
+                        return <option value={producer.id} className={producer.firstname}>{producer.firstname}</option>
                     })
                 }
             </select>

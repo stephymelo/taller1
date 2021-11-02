@@ -4,10 +4,13 @@ import './ProducerForm.css';
 
 interface ProducerElemFormProps {
     onCreate: (newProducer: {
-        name: string,
+        id: number,
+        firstname: string,
+        lastname: string,
         role: string,
         profileimg: string,
-        backgroundimg: string}) => void;
+        backgroundimg: string
+    }) => void;
 
 }
 
@@ -18,13 +21,19 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
 
 
 
-    const [name, setName] = React.useState('');
-    const handleNameChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-        setName(event.target.value);
+    const [firstname, setFirstName] = React.useState('');
+    const handleFirstNameChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        setFirstName(event.target.value);
     }
 
+    const [lastname, setLastName] = React.useState('');
+    const handleLastNameChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        setLastName(event.target.value);
+    }
+
+
     const [role, setRole] = React.useState('');
-    const handleRoleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const handleRoleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
         setRole(event.target.value);
     }
 
@@ -34,7 +43,7 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
     const handleProfileChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         console.log(event);
         setProfileimg(event.target.value);
-  
+
     }
 
     const [backgroundimg, setBackgroundimg] = React.useState('');
@@ -44,8 +53,8 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
 
 
 
-    const isNameValid = name.length >= 5
-    
+    const isNameValid = firstname.length >= 5
+
 
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: any) => {
@@ -56,11 +65,13 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
 
 
             onCreate({
-                name: name,
+                id: Math.random(),
+                firstname: firstname,
+                lastname: lastname,
                 role: role,
                 profileimg: profileimg,
                 backgroundimg: backgroundimg
-                
+
 
             });
         } else {
@@ -77,22 +88,35 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
 
         <form className="producerForm" onSubmit={handleSubmit}>
             <h2>Create profile</h2>
-            <label>Name</label>
-            <input type="text"
-                onChange={handleNameChange}
-                value={name} />
-            {(formSubmitted && !isNameValid) &&
-                <p className="ProducerFormElem__error">Name must be at least 5 characters long</p>
-            }
+            <div className="nameDiv">
+                <div className="nameDiv__1">
+                    <label>First name</label>
+                    <input type="text"
+                        onChange={handleFirstNameChange}
+                        value={firstname} />
+                    {(formSubmitted && !isNameValid) &&
+                        <p className="ProducerFormElem__error">Name must be at least 5 characters long</p>
+                    }
+                </div>
 
+                <div className="nameDiv__2">
+                    <label>Last name</label>
+                    <input type="text"
+                        onChange={handleLastNameChange}
+                        value={lastname} />
+                </div>
+            </div>
 
             <label>Role</label>
-            <input type="text"
-                onChange={handleRoleChange}
-                value={role} />
+
+            <select value={role} onChange={handleRoleChange}>
+                <option value="director">Director</option>
+                <option value="producer">Producer</option>
+                <option value="screenwriter">Screenwriter</option>
+            </select>
 
             <label>Add profile</label>
-            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file"alt="profile"
+            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="profile"
                 onChange={handleProfileChange}
                 value={profileimg} />
 

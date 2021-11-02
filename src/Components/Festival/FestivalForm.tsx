@@ -52,6 +52,8 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElem
 
     return (<div>
         <form className="festivalForm" onSubmit={handleSubmit}>
+            <h2>Add a festival</h2>
+            <label>Festival Title</label>
             <input
                 type="text"
                 onChange={handleTitleChange}
@@ -67,6 +69,7 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElem
                 <option value="fall">Fall</option>
             </select>
             
+            <label>Award</label>
             <input
                 type="text"
                 onChange={handleAwardChange}

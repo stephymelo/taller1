@@ -14,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({ }) => {
         <img className="logo" src={logo} alt="logo" />
         </div>
         <div> <Links/></div> 
+        <div className="linediv"></div>
        
     </header>;
 }
