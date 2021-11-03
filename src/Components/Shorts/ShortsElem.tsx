@@ -5,6 +5,9 @@ import { Link, useHistory } from 'react-router-dom';
 import { ShortElemObj } from '../../Types/ShortElemObj';
 import { GetReviewNum } from '../../Utils/GetReviewNum';
 import { useRef } from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 export type ShortsElemProps = ShortElemObj & {
   onDelete?: (id: number) => void;
@@ -59,6 +62,9 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
   }
 
+  const [value, setValue] = React.useState(2);
+
+
   return (<article className="ShortfilmsPage">
     <section className="shortfilm" >
       <div className="imgDiv">
@@ -72,6 +78,39 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
         <p className="genre">{genre}</p>
         <p>{description}</p>
         
+
+
+
+
+
+
+
+
+
+{/* Rating */}
+
+    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">Controlled</Typography>
+      <Rating
+        name="simple-controlled"
+        value={value}
+        // onChange={(submitN, newReview) => {
+        //   setValue(newReview);
+        // }}
+      />
+      <Typography component="legend">No rating given</Typography>
+      <Rating name="no-value" value={null} />
+    </Box>
+
+
+
+
+
+
         <div className="ratings">
           {review.length > 0 ? <h5>Review:  {GetReviewNum(review)} </h5> : null}
           <div className="rating">
@@ -80,6 +119,15 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
             <button className="addbtn"onClick={handleReview}>Add</button>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
 
 
         {type === 'edit' && <div className="btnDiv">
