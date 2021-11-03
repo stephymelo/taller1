@@ -51,6 +51,9 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
   }
 
+  
+  
+
 
   const handleView: React.MouseEventHandler<HTMLButtonElement> = () => {
     history.push(`/festivals/${id}`);
@@ -89,7 +92,7 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
 {/* Rating */}
 
-    <Box
+    {/* <Box
       sx={{
         '& > legend': { mt: 2 },
       }}
@@ -102,9 +105,13 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
         //   setValue(newReview);
         // }}
       />
-      <Typography component="legend">No rating given</Typography>
-      <Rating name="no-value" value={null} />
-    </Box>
+      <Typography component="legend">Review</Typography>
+      <Rating name="review_star" value={value}
+      onChange={handleReview};
+        
+      />
+      
+    </Box> */}
 
 
 
