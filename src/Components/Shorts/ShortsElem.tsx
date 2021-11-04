@@ -37,22 +37,27 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
   }
 
-  const [newReview, setReview] = React.useState(0);
+
+
+  const [newReview, setNewReview] = React.useState<number>();
 
   const handleReview: React.MouseEventHandler<HTMLButtonElement> = () => {
     let inputReview = (document.querySelector('#inputReview') as HTMLInputElement);
     console.log({ inputReview })
-    if (inputReview) {
-      setReview(Number.parseInt(inputReview.value));
-
-      SubmitNewReview(newReview)
-
-    }
-
+    // if (inputReview) {
+    //   setNewReview(Number.parseInt(inputReview.value));
+    //   SubmitNewReview(newReview)
+    // }
   }
 
-  
-  
+  const handleNewReview = (event: React.SyntheticEvent<Element, Event>, value: number | null) => {
+    if (!!value) {
+      setNewReview(value);
+      review.push(value);
+    }
+
+  };
+
 
 
   const handleView: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -65,7 +70,7 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
   }
 
-  const [value, setValue] = React.useState(2);
+
 
 
   return (<article className="ShortfilmsPage">
@@ -80,38 +85,23 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
         <h4 key={producerID}>Produced by {producerName ? producerName.replace('Select option', '') : 'NA'}</h4>
         <p className="genre">{genre}</p>
         <p>{description}</p>
-        
 
 
 
+        {/* Rating */}
 
 
+        <Box
+          sx={{
+            '& > legend': { mt: 2 },
+          }}
+        >
+          <Typography component="legend">Review</Typography>
+          <Rating name="review_star" value={newReview}
+            onChange={handleNewReview}
+          />
 
-
-
-
-{/* Rating */}
-
-    {/* <Box
-      sx={{
-        '& > legend': { mt: 2 },
-      }}
-    >
-      <Typography component="legend">Controlled</Typography>
-      <Rating
-        name="simple-controlled"
-        value={value}
-        // onChange={(submitN, newReview) => {
-        //   setValue(newReview);
-        // }}
-      />
-      <Typography component="legend">Review</Typography>
-      <Rating name="review_star" value={value}
-      onChange={handleReview};
-        
-      />
-      
-    </Box> */}
+        </Box>
 
 
 
@@ -121,9 +111,9 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
         <div className="ratings">
           {review.length > 0 ? <h5>Review:  {GetReviewNum(review)} </h5> : null}
           <div className="rating">
-           <input id="inputReview" type="number" min={1} max={5} ></input>
+            <input id="inputReview" type="number" min={1} max={5} ></input>
             {/* All dar click en Add, agrega al review.length */}
-            <button className="addbtn"onClick={handleReview}>Add</button>
+            <button className="addbtn" onClick={handleReview}>Add</button>
           </div>
         </div>
 
