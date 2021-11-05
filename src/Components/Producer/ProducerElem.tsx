@@ -66,9 +66,7 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, firstname, lastname, ro
 
               </div>
             })
-
           }
-
         </div>
       </div>
     </section>

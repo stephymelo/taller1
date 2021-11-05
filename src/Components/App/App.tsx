@@ -29,7 +29,7 @@ function App() {
      id:0,
      firstname: 'Stephy',
      lastname: 'Melo',
-     role: 'Director Malo',
+     role: 'Director',
      backgroundimg: 'asadw',
      profileimg:'adwdq'
     } 
