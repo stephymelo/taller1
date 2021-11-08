@@ -4,6 +4,7 @@ import { FestivalElemObj } from '../../Types/FestivalElemObj';
 import { ShortElemObj } from '../../Types/ShortElemObj';
 import FestivalForm from './FestivalForm';
 import './Festival.css';
+import { title } from 'process';
 
 const Festival = ({ fest }: any) => {
   return (<>
@@ -12,39 +13,68 @@ const Festival = ({ fest }: any) => {
   </>);
 }
 
-const FestivalDetails = ({ fest }: any) => {
-  return (<div key={fest.id}>
-    <h1>{fest.title}</h1>
-    <h2>{fest.season}</h2>
-    <h2>{fest.award}</h2>
-  </div>);
-}
+
 
 interface FestivalsProps {
   list: ShortElemObj[];
   onCreateFestival: (shortElemId: number, newFestivalElem: FestivalElemObj) => void;
 }
 
+const getFilmsFromFestival = (list: ShortElemObj[], selected: any) => {
+  let shortSelected: ShortElemObj[];
+  shortSelected = list
+    .filter((element) =>
+      element.festivals.some((subElement) => subElement.id == selected.id))
+    .map(element => {
+      return Object.assign({}, element, { festivals: element.festivals.filter(subElement => subElement.id == selected.id) });
+
+    });
+  console.log({ shortSelected });
+  return shortSelected;
+}
+
+const getFestivals = (list: ShortElemObj[]) => {
+  const allFestivals: FestivalElemObj[] = [];
+  list.forEach(short => {
+    short.festivals.forEach(fab => {
+
+      allFestivals.push(fab);
+
+
+
+    })
+  })
+  console.log({ allFestivals });
+  return allFestivals;
+}
 
 const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
-  const { festivals } = list[0];
   const [selected, setSelected] = useState<any>();
   const { id: idString } = useParams<{ id: string }>();
   const id = parseFloat(idString);
-
+  const festivals = getFestivals(list); // here we extract festival from shorts
+  console.log({ festivals });
   if (!festivals.length) {
     return <Redirect to="/404" />;
   }
 
-  console.log(id)
+
   return <>
     {selected ?
       //Selected details option
-      <FestivalDetails fest={selected} />
+      <div>
+        <FestivalDetails fest={selected} />
+        {
+          getFilmsFromFestival(list, selected).map(f => {
+            return <div>{f.title}</div>
+          })
+        }
+      </div>
+
       :
       //list of all festivals
       <ol>
-        {festivals.map(fest => <button onClick={() => setSelected(fest)}> <Festival fest={fest} /></button>)}
+        {festivals.map(fest => <button onClick={() => { setSelected(fest); }}> <Festival fest={fest} /></button>)}
       </ol>
     }
 
@@ -53,6 +83,20 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
   </>
 }
 
+const FestivalDetails = ({ fest }: any,) => {
 
+  return (<div key={fest.id}>
+    <h1>{fest.title}</h1>
+    <h2>{fest.season}</h2>
+    <h2>{fest.award}</h2>
+    <div>
+
+
+      <button>Add Short to Festival</button>
+
+      <h3>Films Selected</h3>
+    </div>
+  </div>);
+}
 
 export default Festivals;

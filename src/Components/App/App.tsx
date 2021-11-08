@@ -60,6 +60,8 @@ function App() {
     },
   ]);
 
+  console.log(shortElems);
+
   const handleCreate = (newShortElem: { title: string, genre: string, year: number, coverimg: string, description: string, producerName: string | undefined, producerID: string | undefined}) => {
     const newArray = [
       ...shortElems,
