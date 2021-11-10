@@ -31,7 +31,7 @@ const Graphics : React.FC<Graphics> = ({list}) => {
         labels: labels,
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Average of Votes',
             data: datas,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
