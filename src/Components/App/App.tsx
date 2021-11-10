@@ -17,6 +17,7 @@ import {
   Switch,
 } from "react-router-dom";
 import { FestivalElemObj } from '../../Types/FestivalElemObj';
+import Graphics from '../Graphics/Graphics';
 
 
 
@@ -233,6 +234,10 @@ function App() {
               />
             </div>
           </Route>
+
+          <Route path="/filmsStadists" >
+           <Graphics  list={shortElems}></Graphics> 
+           </Route> 
 
           <Route path='/404' exact={true}  >
             {

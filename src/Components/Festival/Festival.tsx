@@ -48,8 +48,12 @@ const getFestivals = (list: ShortElemObj[]) => {
   return allFestivals;
 }
 
+const addFestivaltoShort = function (onCreateFestival, shortElemId: number, newFestivalElem: FestivalElemObj) {
+  onCreateFestival(shortElemId, newFestivalElem);
+}
+
 const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
-  const [selected, setSelected] = useState<any>();
+  const [selected, setSelected] = useState<FestivalElemObj>();
   const { id: idString } = useParams<{ id: string }>();
   const id = parseFloat(idString);
   const festivals = getFestivals(list); // here we extract festival from shorts
@@ -64,11 +68,19 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
       //Selected details option
       <div>
         <FestivalDetails fest={selected} />
+        <h3>Films Selected</h3>
         {
           getFilmsFromFestival(list, selected).map(f => {
             return <div>{f.title}</div>
           })
         }
+        <select>
+          <option value={"none"}>Select Option</option>
+          {list.map(f => {
+            return <option value={f.id}>{f.title}</option>
+          })}
+        </select>
+        <button onClick={()=>{addFestivaltoShort(onCreateFestival(id,selected),id,selected)} }>Add Short to Festival</button>
       </div>
 
       :
@@ -92,9 +104,9 @@ const FestivalDetails = ({ fest }: any,) => {
     <div>
 
 
-      <button>Add Short to Festival</button>
+      
 
-      <h3>Films Selected</h3>
+      
     </div>
   </div>);
 }

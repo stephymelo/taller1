@@ -64,11 +64,7 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
     history.push(`/festivals/${id}`);
   }
 
-  const SubmitNewReview = (newReview: number) => {
-    console.log({ newReview })
-    review.push(newReview);
 
-  }
 
 
 
