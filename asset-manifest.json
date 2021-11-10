@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.css": "/taller1/static/css/main.46052f66.chunk.css",
-    "main.js": "/taller1/static/js/main.3c883495.chunk.js",
-    "main.js.map": "/taller1/static/js/main.3c883495.chunk.js.map",
-    "runtime-main.js": "/taller1/static/js/runtime-main.b70c6906.js",
-    "runtime-main.js.map": "/taller1/static/js/runtime-main.b70c6906.js.map",
-    "static/js/2.0f1063eb.chunk.js": "/taller1/static/js/2.0f1063eb.chunk.js",
-    "static/js/2.0f1063eb.chunk.js.map": "/taller1/static/js/2.0f1063eb.chunk.js.map",
-    "static/js/3.312eaabd.chunk.js": "/taller1/static/js/3.312eaabd.chunk.js",
-    "static/js/3.312eaabd.chunk.js.map": "/taller1/static/js/3.312eaabd.chunk.js.map",
+    "main.css": "/taller1/static/css/main.d0eb92cb.chunk.css",
+    "main.js": "/taller1/static/js/main.284e8adf.chunk.js",
+    "main.js.map": "/taller1/static/js/main.284e8adf.chunk.js.map",
+    "runtime-main.js": "/taller1/static/js/runtime-main.0e418324.js",
+    "runtime-main.js.map": "/taller1/static/js/runtime-main.0e418324.js.map",
+    "static/js/2.077131a6.chunk.js": "/taller1/static/js/2.077131a6.chunk.js",
+    "static/js/2.077131a6.chunk.js.map": "/taller1/static/js/2.077131a6.chunk.js.map",
+    "static/js/3.16811bf1.chunk.js": "/taller1/static/js/3.16811bf1.chunk.js",
+    "static/js/3.16811bf1.chunk.js.map": "/taller1/static/js/3.16811bf1.chunk.js.map",
     "index.html": "/taller1/index.html",
-    "static/css/main.46052f66.chunk.css.map": "/taller1/static/css/main.46052f66.chunk.css.map",
-    "static/js/2.0f1063eb.chunk.js.LICENSE.txt": "/taller1/static/js/2.0f1063eb.chunk.js.LICENSE.txt"
+    "static/css/main.d0eb92cb.chunk.css.map": "/taller1/static/css/main.d0eb92cb.chunk.css.map",
+    "static/js/2.077131a6.chunk.js.LICENSE.txt": "/taller1/static/js/2.077131a6.chunk.js.LICENSE.txt",
+    "static/media/bgimg.af706d53.jpeg": "/taller1/static/media/bgimg.af706d53.jpeg",
+    "static/media/img.1c865678.png": "/taller1/static/media/img.1c865678.png",
+    "static/media/profile.dfaedeb9.jpeg": "/taller1/static/media/profile.dfaedeb9.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b70c6906.js",
-    "static/js/2.0f1063eb.chunk.js",
-    "static/css/main.46052f66.chunk.css",
-    "static/js/main.3c883495.chunk.js"
+    "static/js/runtime-main.0e418324.js",
+    "static/js/2.077131a6.chunk.js",
+    "static/css/main.d0eb92cb.chunk.css",
+    "static/js/main.284e8adf.chunk.js"
   ]
 }
