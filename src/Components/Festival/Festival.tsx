@@ -48,9 +48,7 @@ const getFestivals = (list: ShortElemObj[]) => {
   return allFestivals;
 }
 
-const addFestivaltoShort = function (onCreateFestival, shortElemId: number, newFestivalElem: FestivalElemObj) {
-  onCreateFestival(shortElemId, newFestivalElem);
-}
+
 
 const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
   const [selected, setSelected] = useState<FestivalElemObj>();
@@ -60,6 +58,10 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
   console.log({ festivals });
   if (!festivals.length) {
     return <Redirect to="/404" />;
+  }
+
+  const addFestivaltoShort = function ( shortElemId: number, newFestivalElem: FestivalElemObj) {
+    onCreateFestival(shortElemId, newFestivalElem);
   }
 
 
@@ -82,7 +84,7 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
             return <option value={f.id}>{f.title}</option>
           })}
         </select>
-        <button onClick={()=>{addFestivaltoShort(onCreateFestival(id,selected),id,selected)} }>Add Short to Festival</button>
+        <button onClick={()=>{addFestivaltoShort(id,selected)} }>Add Short to Festival</button>
       </div>
 
       :
@@ -114,3 +116,4 @@ const FestivalDetails = ({ fest }: any,) => {
 }
 
 export default Festivals;
+

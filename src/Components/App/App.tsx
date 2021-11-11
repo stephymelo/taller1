@@ -187,20 +187,21 @@ function App() {
     const shortElemCopy = shortElems.slice();
     const editIndex = shortElems.findIndex((elem) => {
       if (elem.id === shortElemId) {
+        console.log("es igual id");
         return true;
       }
-      return false;
+      shortElemCopy[editIndex] = {
+        ...shortElems[editIndex],
+        festivals: [
+          ...shortElems[editIndex].festivals,
+          newFestivalElem
+        ]
+      }
+  
+      setShortElems(shortElemCopy);
     });
 
-    shortElemCopy[editIndex] = {
-      ...shortElems[editIndex],
-      festivals: [
-        ...shortElems[editIndex].festivals,
-        newFestivalElem
-      ]
-    }
 
-    setShortElems(shortElemCopy);
   }
 
 
