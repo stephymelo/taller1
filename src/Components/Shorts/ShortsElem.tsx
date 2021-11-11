@@ -13,12 +13,13 @@ export type ShortsElemProps = ShortElemObj & {
   onDelete?: (id: number) => void;
   onEdit?: (id: number) => void;
   type: 'festival' | 'edit';
+  state?: 'visual' | 'selected';
 
 
 }
 
 
-const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review, coverimg, description, onDelete, onEdit, type, producerID, producerName }) => {
+const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review, coverimg, description, state = 'visual', onDelete, onEdit, type, producerID, producerName }) => {
 
   const history = useHistory();
 
@@ -64,19 +65,26 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
     history.push(`/festivals/${id}`);
   }
 
+  const handleViewShort: React.MouseEventHandler<HTMLHeadingElement> = () => {
+    history.push(`/shorts/${id}`);
+  }
 
 
 
 
+
+
+
+  // {type === 'create' ? 'New' : 'Edit'} Shortfilm {editId}
 
   return (<article className="ShortfilmsPage">
-    <section className="shortfilm" >
+    <section className={state === 'selected' ? "shortfilm shortfilm__selected" : "shortfilm"}  >
       <div className="imgDiv">
         <img className="coverimg" src={coverimg} alt="profile" />
         {/* <img src={`${process.env.PUBLIC_URL}${coverimg}`}  alt="profile"/> */}
       </div>
       <div className="infoDiv">
-        <h2>{title}</h2>
+        <h2 onClick={handleViewShort} >{title}</h2>
         <h3>{year}</h3>
         <h4 key={producerID}>Produced by {producerName ? producerName.replace('Select option', '') : 'NA'}</h4>
         <p className="genre">{genre}</p>
@@ -87,7 +95,7 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
         {/* Rating */}
 
 
-        <Box
+        <Box className="stars"
           sx={{
             '& > legend': { mt: 2 },
           }}

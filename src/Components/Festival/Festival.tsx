@@ -75,20 +75,20 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
 
 
   return <>
-  <h2 className="festivaltitle">Festival</h2>
+  <h1 className="festivaltitle">Festivals</h1>
   
     {selected ?
       //Selected details option
-      <div>
+      <div className="festivalsAdd">
         <FestivalDetails fest={selected} />
-        <h3>Films Selected</h3>
+        <h3>Add to a shortfilm</h3>
         {
           getFilmsFromFestival(list, selected).map(f => {
             return <div>{f.title}</div>
           })
         }
         <select onChange={handleShortSelectedChange}>
-          <option value={"none"}>Select Option</option>
+          <option value={"none"}> </option>
           {list.map(f => {
             return <option value={f.id}>{f.title}</option>
           })}
@@ -103,17 +103,17 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
       </ol>
     }
 
-    <h2 className="festivaltitle">Total festivals: {festivals.length}</h2>
+    {/* <h2 className="festivaltitle">Total festivals: {festivals.length}</h2> */}
     {true && <FestivalForm onCreateFestival={onCreateFestival} shortElemId={id} />}
   </>
 }
 
 const FestivalDetails = ({ fest }: any,) => {
 
-  return (<div key={fest.id}>
-    <h1>{fest.title}</h1>
-    <h2>{fest.season}</h2>
-    <h2>{fest.award}</h2>
+  return (<div className="festivals" key={fest.id}>
+    <h2>{fest.title}</h2>
+    <h3>{fest.season}</h3>
+    <p>{fest.award}</p>
     <div>
 
 

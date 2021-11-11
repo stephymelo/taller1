@@ -22,7 +22,7 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElem
         setSeason(event.target.value);
     }
     const [award, setAward] = React.useState('');
-    const handleAwardChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const handleAwardChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
         setAward(event.target.value);
     }
 
@@ -42,8 +42,8 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElem
 
         }
 
-        console.log({newFestivalElem})
-        onCreateFestival(shortElemId,newFestivalElem);
+        console.log({ newFestivalElem })
+        onCreateFestival(shortElemId, newFestivalElem);
         //history.goBack();
 
 
@@ -59,7 +59,7 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElem
                 onChange={handleTitleChange}
                 value={title}
             />
-           
+
             <label>Season</label>
 
             <select value={season} onChange={handleSeasonChange}>
@@ -68,13 +68,37 @@ const FestivalForm: React.FC<FestivalFormProps> = ({ onCreateFestival, shortElem
                 <option value="summer">Summer</option>
                 <option value="fall">Fall</option>
             </select>
-            
+
             <label>Award</label>
-            <input
+            <select value={award} onChange={handleAwardChange}>
+                <option value="Best Film">Best Film</option>
+                <option value="Best Director">Best Director</option>
+                <option value="Best Soundtrack">Best Soundtrack</option>
+                <option value="Best Cinematography">Best Cinematography</option>
+                <option value="Best Costume Design">Best Costume Design</option>
+                <option value="Best Sound Design">Best Sound Design</option>
+                <option value="Best Original Song">Best Original Song</option>
+                <option value="Best Actriz">Best Actriz</option>
+                <option value="Best Suppoting Actriz">Best Suppoting Actriz</option>
+                <option value="Best Adaptive Screenplay">Best Adaptive Screenplay</option>
+                <option value="Best Animation Short">Best Animation Short</option>
+                <option value="Best Special Effects">Best Special Effects</option>
+                <option value="Best Documentary Short">Best Documentary Short</option>
+                <option value="Best Film Editing">Best Film Editing</option>
+                <option value="Best Production Design">Best Production Design</option>
+                <option value="Best Makeup and Hair">Best Makeup and Hair</option>
+                <option value="Best Sound Editing">Best Sound Editing</option>
+                <option value="Best Artistic Value">Best Artistic Value</option>
+                <option value="Best Supporting Director">Best Supporting Director</option>
+                
+                
+
+            </select>
+            {/* <input
                 type="text"
                 onChange={handleAwardChange}
                 value={title}
-            />
+            /> */}
             <button>
                 Add festival
             </button>

@@ -117,13 +117,13 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
             </select>
 
             <label>Add profile</label>
-            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="profile"
+            <input type="text"
                 onChange={handleProfileChange}
                 value={profileimg} />
 
 
             <label>Add background cover</label>
-            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="bg"
+            <input type="text"
                 onChange={handleBackgroundimg}
                 value={backgroundimg} />
 

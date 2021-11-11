@@ -32,16 +32,16 @@ function App() {
      firstname: 'Stephy',
      lastname: 'Melo',
      role: 'Director',
-     backgroundimg: 'asadw',
-     profileimg:'adwdq'
+     backgroundimg: 'https://www.indiewire.com/wp-content/uploads/2017/10/screen-shot-2017-10-10-at-6-57-53-pm.png',
+     profileimg:'https://lh3.googleusercontent.com/proxy/xI591pAm68gyopoqRastwSDQVKaIl26CuabOg9IFhNEpiLg1UuoDyRx0b1bEf7XBeuFoUjaDp9e8r2IwdxUTsxhHRIXXG4wW-pJE3Q02b9DHdXpvk57y6PhD2BzPw8tOgdtPqXhq'
     } ,
     {
       id:1,
       firstname: 'Matthew',
       lastname: 'Melo',
       role: 'Director',
-      backgroundimg: 'asadw',
-      profileimg:'adwdq'
+      backgroundimg: 'https://culturedvultures.com/wp-content/uploads/2017/10/Blade-Runner-2049.jpg',
+      profileimg:'https://cms-assets.theasc.com/B-Young.jpg?mtime=20190514163611'
      } 
 
   ]);
@@ -102,7 +102,7 @@ function App() {
           id: 2,
           title: "Fantasia",
           season: "Fall",
-          award: "Best Sountrack"
+          award: "Best Soundtrack"
         }
       ]
     },

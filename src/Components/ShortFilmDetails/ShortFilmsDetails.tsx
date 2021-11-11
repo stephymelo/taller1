@@ -6,6 +6,7 @@ import { useGetElemByIdParam } from '../../Utils/useGetElemIdParams';
 import { useIdParam } from '../../Utils/useIdParams';
 // import { Links } from '../../Components/Header/Links/Links';
 import ShortsElem from '../Shorts/ShortsElem';
+import './ShortFilmsDetails.css';
 
 
 interface ShortElemDetailsProps {
@@ -13,28 +14,45 @@ interface ShortElemDetailsProps {
 
 }
 
-const ShortFilmsDetails: React.FC<ShortElemDetailsProps> = ({ list}) => {
+const ShortFilmsDetails: React.FC<ShortElemDetailsProps> = ({ list }) => {
   const id = useIdParam();
   const elem = useGetElemByIdParam(list);
 
-  if(!elem) return null;
-  const { title, genre, year } = elem;
+
+  //Spread operator
+
+  if (!elem) return null;
+  const { title, genre, year, coverimg, description, producerID, producerName, festivals } = elem;
+
+
 
 
   return (<div>
+    <Route path="/shorts/:id">
 
-    <Route path="/details/:id">
+
+
       <ShortsElem
-              title={title}
-              genre={genre}
-              id={id}
-              type="festival" coverimg={''} year={0} description={''} producerID={undefined} producerName={undefined} review={[]} festivals={[]}      />
+        title={title}
+        genre={genre}
+        id={id}
+        state="selected"
+        type="festival" coverimg={coverimg} year={year} description={description} producerID={producerID} producerName={producerName} review={[]} festivals={[]} />
 
-    
+      <div className="festivalsShort">
+      <h2>Festivals</h2>
+        {festivals.map(festivals => {
+          return <div className="fes">
+           
+            <h3>{festivals.title}</h3>
+            <h4>{festivals.season}</h4>
+            <p>{festivals.award}</p>
+          </div>
+        })}
+      </div>
+    </Route>
 
- </Route>
 
-    
 
 
   </div>);

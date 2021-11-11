@@ -22,7 +22,7 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, firstname, lastname, ro
   // console.log(process.env.PUBLIC_URL+"/img/C:/fakepath/"+profileimg);
   const style: React.CSSProperties = {
 
-    background: `url(${bg})`,
+    background: `url(${backgroundimg})`,
 
 
   }
@@ -40,7 +40,7 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, firstname, lastname, ro
         {/* <img className="profileimg" src={bg} alt="profile" /> */}
         <div className="profile">
 
-          <img className="profileimg" src={profile} alt="profile" />
+          <img className="profileimg" src={profileimg} alt="profile" />
 
           <div className="name">
             <div className="names">
