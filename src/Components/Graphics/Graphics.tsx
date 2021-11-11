@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Bar } from 'react-chartjs-2'
+import './Graphics.css';
 import ChartOptions from "react-chartjs-2";
 import { ShortElemObj } from '../../Types/ShortElemObj';
 import { GetReviewNum } from '../../Utils/GetReviewNum';
@@ -58,8 +59,8 @@ const Graphics : React.FC<Graphics> = ({list}) => {
 
 
     return <div>
-        <h1>Estadisticas de los Shorts</h1>
-        <Bar data={data}  />
+        <h1 className="reviewTitle">Shortfilm Reviews</h1>
+        <Bar className="graph" data={data}  />
 
     </div>
     
