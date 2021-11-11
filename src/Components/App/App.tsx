@@ -42,7 +42,7 @@ function App() {
   const [shortElems, setShortElems] = React.useState<ShortElemObj[]>([
     {
       id: 0,
-      coverimg: 'adasdas',
+      coverimg: 'https://popcornandtequila.com/wp-content/uploads/2020/08/a-rodeo-film.png',
       genre: 'Comedy',
       year: 2020,
       description: 'Shrek is an anti-social and highly-territorial green ogre who loves the solitude of his swamp. His life is interrupted after the dwarfish Lord Farquaad of Duloc unknowingly exiles a vast number of fairy-tale creatures to Shreks swamp. Angered by the intrusion, he decides to visit Farquaad and demand they be moved elsewhere. He reluctantly allows the talkative Donkey, who was exiled as well, to tag along and guide him to Duloc. Meanwhile, Farquaad is presented with Snow Whites Magic Mirror, who tells him that in order to become a true king, he must marry a princess',
@@ -56,6 +56,44 @@ function App() {
           title: "Sundance",
           season: "Winter",
           award: "Best Film"
+        }
+      ]
+    },
+    {
+      id: 1,
+      coverimg: 'https://static.shortoftheweek.com/wp-content/uploads/2021/11/They-Hear-It-Julian-Terry-Horror-Short-Film-01.jpg',
+      genre: 'Comedy',
+      year: 2020,
+      description: 'Shrek is an anti-social and highly-territorial green ogre who loves the solitude of his swamp. His life is interrupted after the dwarfish Lord Farquaad of Duloc unknowingly exiles a vast number of fairy-tale creatures to Shreks swamp. Angered by the intrusion, he decides to visit Farquaad and demand they be moved elsewhere. He reluctantly allows the talkative Donkey, who was exiled as well, to tag along and guide him to Duloc. Meanwhile, Farquaad is presented with Snow Whites Magic Mirror, who tells him that in order to become a true king, he must marry a princess',
+      title: 'Skins',
+      review: [1, 1, 2, 3, 5, 4, 2, 1, 3, 4],
+      producerID: '0',
+      producerName: 'Stephy',
+      festivals: [
+        {
+          id: 1,
+          title: "Toronto",
+          season: "Summer",
+          award: "Best Director"
+        }
+      ]
+    },
+    {
+      id: 2,
+      coverimg: 'https://shortshorts.org/2019/film/wp-content/uploads/2019/04/6a0dddca17730a8fe0fbfac97d80210e-1024x429.jpg',
+      genre: 'Comedy',
+      year: 2020,
+      description: 'Shrek is an anti-social and highly-territorial green ogre who loves the solitude of his swamp. His life is interrupted after the dwarfish Lord Farquaad of Duloc unknowingly exiles a vast number of fairy-tale creatures to Shreks swamp. Angered by the intrusion, he decides to visit Farquaad and demand they be moved elsewhere. He reluctantly allows the talkative Donkey, who was exiled as well, to tag along and guide him to Duloc. Meanwhile, Farquaad is presented with Snow Whites Magic Mirror, who tells him that in order to become a true king, he must marry a princess',
+      title: 'Skins',
+      review: [1, 1, 2, 3, 5, 4, 2, 1, 3, 4],
+      producerID: '0',
+      producerName: 'Stephy',
+      festivals: [
+        {
+          id: 2,
+          title: "Fantasia",
+          season: "Fall",
+          award: "Best Sountrack"
         }
       ]
     },
@@ -227,7 +265,7 @@ function App() {
 
           <Route exact={true} path="/festivals/:id">
             <div>
-              <h2>Festival</h2>
+              
               <FestivalElem
                 list={shortElems}
                 onCreateFestival={handleCreateFestival}

@@ -110,6 +110,7 @@ const ProducerForm: React.FC<ProducerElemFormProps> = ({ onCreate }) => {
             <label>Role</label>
 
             <select value={role} onChange={handleRoleChange}>
+                <option value=""></option>
                 <option value="director">Director</option>
                 <option value="producer">Producer</option>
                 <option value="screenwriter">Screenwriter</option>

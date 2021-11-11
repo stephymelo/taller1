@@ -72,7 +72,7 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
   return (<article className="ShortfilmsPage">
     <section className="shortfilm" >
       <div className="imgDiv">
-        <img className="coverimg" src={cover} alt="profile" />
+        <img className="coverimg" src={coverimg} alt="profile" />
         {/* <img src={`${process.env.PUBLIC_URL}${coverimg}`}  alt="profile"/> */}
       </div>
       <div className="infoDiv">
@@ -106,11 +106,6 @@ const ShortsElem: React.FC<ShortsElemProps> = ({ id, title, year, genre, review,
 
         <div className="ratings">
           {review.length > 0 ? <h5>Review:  {GetReviewNum(review)} </h5> : null}
-          <div className="rating">
-            <input id="inputReview" type="number" min={1} max={5} ></input>
-            {/* All dar click en Add, agrega al review.length */}
-            <button className="addbtn" onClick={handleReview}>Add</button>
-          </div>
         </div>
 
 

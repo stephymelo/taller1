@@ -51,7 +51,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
     const [producer, setProducer] = React.useState({ producerName: "", producerID: "" });
     const handleProducer: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
         setProducer({ producerName: event.target.innerText, producerID: event.target.value });
-        console.log(producer)
+       
     }
 
 
@@ -74,7 +74,7 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
                 title: title,
                 genre: genre,
                 year: year,
-                coverimg: "string",
+                coverimg: coverimg,
                 description: description,
                 producerID: producer.producerID,
                 producerName: producer.producerName
@@ -135,9 +135,13 @@ const ShortsForm: React.FC<ShortElemFormProps> = ({ editId, type, onCreate, onEd
                 value={description} />
 
             <label>Add cover image</label>
-            <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="bg"
+            <input type="text"
+            onChange={handleCoverimg}
+            value={coverimg} />
+
+            {/* <input multiple accept=".jpg,.png,.webp,.jfif" name="file" type="file" alt="bg"
                 onChange={handleCoverimg}
-                value={coverimg} />
+                value={coverimg} /> */}
 
             <label>Add Producer</label>
             <select name="producers" onChange={handleProducer}>

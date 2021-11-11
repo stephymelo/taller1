@@ -64,6 +64,8 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
 
 
   return <>
+  <h2 className="festivaltitle">Festival</h2>
+  
     {selected ?
       //Selected details option
       <div>

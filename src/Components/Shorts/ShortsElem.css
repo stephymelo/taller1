@@ -32,6 +32,8 @@
 
 .coverimg {
     width: 600px;
+    height:100%;
+    object-fit: cover;
     border-radius: 20px;
 }
 
@@ -44,7 +46,8 @@
 }
 
 .imgDiv {
-    padding-top: 20px;
+    padding-top: 30px;
+    height:400px;
 }
 
 .infoDiv {

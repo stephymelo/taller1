@@ -62,11 +62,20 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, firstname, lastname, ro
                   <h1 className="title">{short.title}, {short.year}</h1>
                   <p>{short.genre}</p>
                 </div>
-                <img className="shortimg" src={cover} alt="profile" />
+                
+                <div className="shortimgContainer">
+                  <img className="shortimg" src={short.coverimg} alt="profile" />
 
+                </div>
+
+                <div className="line"></div>
+               
               </div>
+              
             })
+            
           }
+           
         </div>
       </div>
     </section>
