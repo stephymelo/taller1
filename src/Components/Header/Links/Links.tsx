@@ -35,6 +35,9 @@ const Links: React.FC<Links> = ({ }) => {
                     <Link className="elem" to="/festivals/0">Festivals</Link>
                 </li>
                 <li>
+                    <Link className="elem" to="/shorts/0">Short</Link>
+                </li>
+                <li>
                     <Link className="elem" to="/filmsStadists">Reviews</Link>
                 </li>
 

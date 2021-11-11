@@ -59,8 +59,8 @@ const ProducerElem: React.FC<ProducerElemProps> = ({ id, firstname, lastname, ro
             producerShortFilms!.map(short => {
               return <div className="shortElem">
                 <div className="shortdiv">
-                  <h1 className="title">{short.title}, {short.year}</h1>
-                  <p>{short.genre}</p>
+                  <h1 className="title">{short.title},{short.year}</h1>
+                  <p className="genre">{short.genre}</p>
                 </div>
                 
                 <div className="shortimgContainer">
