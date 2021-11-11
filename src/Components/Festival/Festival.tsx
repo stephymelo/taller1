@@ -34,17 +34,21 @@ const getFilmsFromFestival = (list: ShortElemObj[], selected: any) => {
 }
 
 const getFestivals = (list: ShortElemObj[]) => {
-  const allFestivals: FestivalElemObj[] = [];
+  let allFestivals: FestivalElemObj[] = [];
   list.forEach(short => {
     short.festivals.forEach(fab => {
 
-      allFestivals.push(fab);
+     
+        allFestivals.push(fab);
+      
+      
 
 
 
     })
   })
   console.log({ allFestivals });
+  allFestivals = allFestivals.filter((item,index)=> allFestivals.indexOf(item) === index);
   return allFestivals;
 }
 
@@ -54,6 +58,10 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
   const [selected, setSelected] = useState<FestivalElemObj>();
   const { id: idString } = useParams<{ id: string }>();
   const id = parseFloat(idString);
+  const [selectedID, setSelectedID] = React.useState('');
+    const handleShortSelectedChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+        setSelectedID(event.target.value);
+    }
   const festivals = getFestivals(list); // here we extract festival from shorts
   console.log({ festivals });
   if (!festivals.length) {
@@ -61,6 +69,7 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
   }
 
   const addFestivaltoShort = function ( shortElemId: number, newFestivalElem: FestivalElemObj) {
+    
     onCreateFestival(shortElemId, newFestivalElem);
   }
 
@@ -78,13 +87,13 @@ const Festivals: React.FC<FestivalsProps> = ({ list, onCreateFestival }) => {
             return <div>{f.title}</div>
           })
         }
-        <select>
+        <select onChange={handleShortSelectedChange}>
           <option value={"none"}>Select Option</option>
           {list.map(f => {
             return <option value={f.id}>{f.title}</option>
           })}
         </select>
-        <button onClick={()=>{addFestivaltoShort(id,selected)} }>Add Short to Festival</button>
+        <button onClick={()=>{addFestivaltoShort(Number.parseFloat(selectedID),selected)} }>Add Short to Festival</button>
       </div>
 
       :

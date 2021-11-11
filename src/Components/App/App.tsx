@@ -198,19 +198,22 @@ function App() {
       if (elem.id === shortElemId) {
         console.log("es igual id");
         return true;
-      }
-      shortElemCopy[editIndex] = {
-        ...shortElems[editIndex],
-        festivals: [
-          ...shortElems[editIndex].festivals,
-          newFestivalElem
-        ]
-      }
-  
-      setShortElems(shortElemCopy);
+        
+      } 
+        return false;
+      
+
     });
 
+    shortElemCopy[editIndex] = {
+      ...shortElems[editIndex],
+      festivals: [
+        ...shortElems[editIndex].festivals,
+        newFestivalElem
+      ]
+    }
 
+    setShortElems(shortElemCopy);
   }
 
 
