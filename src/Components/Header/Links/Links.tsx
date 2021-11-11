@@ -16,9 +16,6 @@ const Links: React.FC<Links> = ({ }) => {
 
         <nav className="menu">
             <ul className="menulist">
-                <li className="menulistElem">
-                    <Link className="elem" to="/">Home</Link>
-                </li>
                 <li>
                     <Link className="elem" to="/createShortfilms">Add Short film</Link>
                 </li>
