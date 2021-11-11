@@ -11,58 +11,75 @@ interface Graphics {
 
 }
 
-const Graphics : React.FC<Graphics> = ({list}) => {
+const Graphics: React.FC<Graphics> = ({ list }) => {
 
-  
-  
-    let labels : string[] = [];
-    list.forEach( item => {
-      labels.push(item.title);
-    })
+
+
+  let labels: string[] = [];
+  list.forEach(item => {
+    labels.push(item.title);
+  })
+
+  let datas: number[] = [];
+  list.forEach(item => {
+    datas.push(GetReviewNum(item.review));
+  })
+
+
+
+  const ctx = document.getElementById("myChart");
+  const data = ({
+    labels: labels,
     
-    let datas : number[] = [];
-    list.forEach( item => {
-      datas.push(GetReviewNum(item.review));
-    })
-  
-
-  
-
-    const data = {
-        labels: labels,
         datasets: [
           {
-            label: 'Average of Votes',
+            label: '',
             data: datas,
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
+              'rgba(106, 131, 166,0.2)',
+              'rgba(74, 110, 161, 0.2)',
+              'rgba(26, 67, 125, 0.2)',
+              'rgba(106, 131, 166,0.2)',
+              'rgba(74, 110, 161, 0.2)',
+              'rgba(26, 67, 125, 0.2)',
+              'rgba(106, 131, 166,0.2)',
+              'rgba(74, 110, 161, 0.2)',
+              'rgba(26, 67, 125, 0.2)',
+              'rgba(106, 131, 166,0.2)',
+              'rgba(74, 110, 161, 0.2)',
+              'rgba(26, 67, 125, 0.2)',
             ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
+            highlightFill: 'rgba(151,187,205,0.75)',
+            hoverBackgroundColor:'rgba(151,187,205,0.75)',
+            padding: 2,
+            // scales: {
+            //   yAxes: [{
+            //     ticks: {
+            //       beginAtZero: true
+            //     }
+            //   }]
+            // }
+
+
           },
+          
+          
         ],
-      };
-      
-    
+      });
 
 
-    return <div>
-        <h1 className="reviewTitle">Shortfilm Reviews</h1>
-        <Bar className="graph" data={data}  />
 
-    </div>
+
+      return<div>
+        < h1 className="reviewTitle" > Shortfilm Reviews</h1>
+        <div className="graphContainer">
+        <Bar className="graph" data={data} />
+
+        </div>
+  
+    {/* <canvas id="myChart" width="400" height="200"></canvas> */}
+
+    </div >
     
 }
 

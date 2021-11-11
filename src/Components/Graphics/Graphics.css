@@ -2,7 +2,12 @@
     margin-left:50px;
 }
 
+.graphContainer{
+    width:70%;
+    margin-left:200px;
+}
+
 .graph{
-    width:50%;
+    width:100%;
 }
 

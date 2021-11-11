@@ -93,7 +93,7 @@ function App() {
       genre: 'Horror',
       year: 2019,
       description: 'The film is about a family on vacation. After 11 years of continuous work, Alex Peinado decides to spend a well earned holiday with his family. He goes on a road trip towards Cartagena, with his wife, his mother in law, his two teenage children and his dog Kaiser. But the journey is not his only motivation, as Alex hides a plan that requires them to reach their destination on time. On the way the road trip will become the most incredible adventure, which puts at risk their arrival to the Colombian coast',
-      title: 'See through',
+      title: 'See men',
       review: [5, 5,5, 5, 5, 5],
       producerID: '0',
       producerName: 'Stephy',
